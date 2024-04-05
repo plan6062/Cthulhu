@@ -36,13 +36,13 @@ public class ReadmeEditor : Editor {
 	
 	static void LoadLayout()
 	{
-		var assembly = typeof(EditorApplication).Assembly; 
+		/* var assembly = typeof(EditorApplication).Assembly; 
 		var windowLayoutType = assembly.GetType("UnityEditor.WindowLayout", true);
 		var method = windowLayoutType.GetMethod("LoadWindowLayout", BindingFlags.Public | BindingFlags.Static);
-		method.Invoke(null, new object[]{Path.Combine(Application.dataPath, "IgniteCoders/Simple Water Shader/Info/Layout.wlt"), false});
+		method.Invoke(null, new object[]{Path.Combine(Application.dataPath, "Unity/Info/Layout.wlt"), false}); */
 	}
 	
-	[MenuItem("Documentation/Simple Water Shader")]
+	[MenuItem("Tutorial/Show Tutorial Instructions")]
 	static Readme SelectReadme() 
 	{
 		var ids = AssetDatabase.FindAssets("Readme t:Readme");
