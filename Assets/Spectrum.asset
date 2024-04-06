@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33068fc021dadc04dab6e00e4ff45c00, type: 3}
-  m_Name: LakesAndRivers_WaveSpectrum_River
+  m_Name: Spectrum
   m_EditorClassIdentifier: 
   _version: 1
   _fetch: 500000
   _waveDirectionVariance: 90
-  _gravityScale: 1
+  _gravityScale: 0.8
   _smallWavelengthMultiplier: 1
-  _multiplier: 0.58
+  _multiplier: 1
   _powerLog:
-  - -4.2907844
-  - -5.8724604
+  - -7.10794
+  - -6.4279404
   - -5.93794
-  - -4.899759
-  - -4.0003643
-  - -2.6464248
-  - -8
-  - -1.7422518
+  - -5.2779403
+  - -4.67794
+  - -3.7179399
+  - -3.17794
+  - -2.6079402
   - -1.9379401
   - -1.1179401
   - -0.85794
-  - -0.36794007
+  - -1.8521444
   - 0.042060018
-  - -8
-  _powerDisabled: 0101010101010100010101010101
+  - -9.39794
+  _powerDisabled: 0100000000000000000000010101
   _chopScales:
   - 1
   - 1
@@ -64,6 +64,6 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  _chop: 2
+  _chop: 1.476
   _showAdvancedControls: 0
   _model: 0

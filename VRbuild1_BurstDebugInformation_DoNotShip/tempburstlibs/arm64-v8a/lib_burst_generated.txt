@@ -10,6 +10,7 @@ Library: /Users/hwangjaehyeon/Cthulhu/Temp/BurstOutput/tempburstlibs/arm64-v8a/l
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=Crest;
 --assembly-defines=Crest.Examples;
+--assembly-defines=MiniProfiler;
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=System.Configuration;
@@ -129,6 +130,7 @@ Library: /Users/hwangjaehyeon/Cthulhu/Temp/BurstOutput/tempburstlibs/arm64-v8a/l
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=Crest;
 --assembly-defines=Crest.Examples;
+--assembly-defines=MiniProfiler;
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=System.Configuration;
