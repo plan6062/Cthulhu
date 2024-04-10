@@ -156,8 +156,8 @@ Material:
     - _StartLevel: 0.157
     - _StencilFunction: 0
     - _SubSurfaceBase: 0.444
-    - _SubSurfaceDepthMax: 9.4
-    - _SubSurfaceDepthPower: 2.57
+    - _SubSurfaceDepthMax: 12
+    - _SubSurfaceDepthPower: 3.18
     - _SubSurfaceHeightLerp: 1
     - _SubSurfaceHeightMax: 24.9
     - _SubSurfaceHeightPower: 1.68
@@ -196,7 +196,7 @@ Material:
     - _SkyTowardsSun: {r: 0, g: 0, b: 0, a: 1}
     - _SubSurface: {r: 0, g: 0.48, b: 0.36, a: 1}
     - _SubSurfaceColour: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
-    - _SubSurfaceShallowCol: {r: 0.552, g: 1, b: 1, a: 1}
-    - _SubSurfaceShallowColShadow: {r: 0.14417942, g: 0.2264151, b: 0.21173015, a: 1}
+    - _SubSurfaceShallowCol: {r: 0, g: 0, b: 0, a: 1}
+    - _SubSurfaceShallowColShadow: {r: 0, g: 0, b: 0, a: 1}
     - _SubSurfaceShallowColour: {r: 0.41999996, g: 0.75, b: 0.69, a: 1}
   m_BuildTextureStacks: []
