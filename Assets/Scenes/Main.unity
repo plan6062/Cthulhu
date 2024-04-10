@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 51b74d7bad397457d883c5940f7664d8, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9af23ba5fa5364ff598888460e0e2759, type: 2}
   m_HaloStrength: 0.468
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008964469, g: 0.013066635, b: 0.020466687, a: 1}
+  m_IndirectSpecularColor: {r: 0.0032031639, g: 0.0063696033, b: 0.014423053, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1346,7 +1346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5334022573883613875, guid: c00169bba4200754483e7c624531d00b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.128
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 5334022573883613875, guid: c00169bba4200754483e7c624531d00b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2050,7 +2050,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!65 &8502739152894770206
 BoxCollider:
@@ -2082,7 +2082,7 @@ Transform:
   m_GameObject: {fileID: 8502739152894770285}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3786045, y: 1.35, z: 0.3510524}
+  m_LocalPosition: {x: 1.3786045, y: 1.74, z: 0.3510524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2107,7 +2107,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &8502739152894770286
 MonoBehaviour:
