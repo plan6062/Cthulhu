@@ -195,7 +195,7 @@ Material:
     - _SkyBase: {r: 0, g: 0, b: 0, a: 1}
     - _SkyTowardsSun: {r: 0, g: 0, b: 0, a: 1}
     - _SubSurface: {r: 0, g: 0.48, b: 0.36, a: 1}
-    - _SubSurfaceColour: {r: 0.32575992, g: 0.43529412, b: 0.28235295, a: 1}
+    - _SubSurfaceColour: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
     - _SubSurfaceShallowCol: {r: 0.552, g: 1, b: 1, a: 1}
     - _SubSurfaceShallowColShadow: {r: 0.14417942, g: 0.2264151, b: 0.21173015, a: 1}
     - _SubSurfaceShallowColour: {r: 0.41999996, g: 0.75, b: 0.69, a: 1}
