@@ -302,7 +302,7 @@ QualitySettings:
     excludedTargetPlatforms: []
   - serializedVersion: 3
     name: Quest2
-    pixelLightCount: 4
+    pixelLightCount: 1
     shadows: 2
     shadowResolution: 2
     shadowProjection: 1
@@ -315,7 +315,7 @@ QualitySettings:
     skinWeights: 2
     globalTextureMipmapLimit: 0
     textureMipmapLimitSettings: []
-    anisotropicTextures: 0
+    anisotropicTextures: 1
     antiAliasing: 2
     softParticles: 1
     softVegetation: 1
