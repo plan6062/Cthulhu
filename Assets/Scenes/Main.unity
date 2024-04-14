@@ -5855,7 +5855,7 @@ Transform:
   m_GameObject: {fileID: 929628993}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.93, y: 0, z: 0}
+  m_LocalPosition: {x: -5.49, y: 0, z: -2.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6230,7 +6230,7 @@ GameObject:
   - component: {fileID: 1294703695}
   - component: {fileID: 1294703694}
   m_Layer: 0
-  m_Name: "TestBGM(\uBB34\uC11C\uC6B0\uBA74\uB044\uACE0\uD14C\uC2A4\uD2B8)"
+  m_Name: TestBGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
