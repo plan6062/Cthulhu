@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 5722679782097945819}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,7 +398,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.05647859, y: 0.5672139, z: 0.18221517, w: 0.8011717}
   m_LocalPosition: {x: -0.998, y: 1.076, z: 2.54}
-  m_LocalScale: {x: 0.8975567, y: 0.8975567, z: 0.89755666}
+  m_LocalScale: {x: 0.89755666, y: 0.89755666, z: 0.8975565}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6256505148801036437}
