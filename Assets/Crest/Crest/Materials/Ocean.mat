@@ -14,6 +14,7 @@ Material:
   m_ValidKeywords:
   - _FOAM_ON
   - _SUBSURFACESCATTERING_ON
+  - _UNDERWATER_ON
   - _VARYSMOOTHNESSOVERDISTANCE_ON
   m_InvalidKeywords:
   - _COMPUTEDIRECTIONALLIGHT_ON
@@ -99,14 +100,14 @@ Material:
     - _CausticsDistortionScale: 50
     - _CausticsDistortionStrength: 0.075
     - _CausticsFocalDepth: 2
-    - _CausticsStrength: 6.97
+    - _CausticsStrength: 8.13
     - _CausticsTextureAverage: 0.07
-    - _CausticsTextureScale: 5.48
+    - _CausticsTextureScale: 9.8
     - _ClipSurface: 0
     - _ClipUnderTerrain: 0
     - _CompileShaderWithDebugInfo: 0
     - _ComputeDirectionalLight: 1
-    - _CullMode: 2
+    - _CullMode: 0
     - _DebugDisableMultiplyByLight0Color: 0
     - _DebugDisableShapeTextures: 0
     - _DebugDisableSmoothLOD: 0
@@ -140,7 +141,7 @@ Material:
     - _Projection: 0
     - _ReflectionBlur: 2.91
     - _RefractAmt: 0
-    - _RefractionStrength: 1.314
+    - _RefractionStrength: 2
     - _RefractiveIndexOfAir: 1
     - _RefractiveIndexOfWater: 1
     - _Roughness: 0
@@ -168,7 +169,7 @@ Material:
     - _TexelSize: 0.125
     - _TextureRes: 1024
     - _Transparency: 0
-    - _Underwater: 0
+    - _Underwater: 1
     - _Update: 0.083
     - _VarySmoothnessOverDistance: 1
     - _WaveFoamBubblesCoverage: 0.71
@@ -185,7 +186,7 @@ Material:
     - _WaveFoamStart: 0
     - _WaveFoamStrength: 1
     m_Colors:
-    - _DepthFogDensity: {r: 0.3, g: 0.22, b: 0.3, a: 1}
+    - _DepthFogDensity: {r: 0.3, g: 0.22, b: 0.3, a: 4.42}
     - _Diffuse: {r: 0.050980397, g: 0.07058824, b: 0.20000002, a: 1}
     - _DiffuseGrazing: {r: 0.05098039, g: 0.069049396, b: 0.2, a: 1}
     - _DiffuseShadow: {r: 0.050980397, g: 0.07058824, b: 0.20000002, a: 1}
