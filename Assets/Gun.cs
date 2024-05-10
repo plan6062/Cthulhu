@@ -5,7 +5,7 @@ public class Gun : MonoBehaviour
     [Header("Bullet Info")]
     public GameObject bulletGameObj;
     public float bulletSpeed;
-    Transform bulletTransform;
+    public Transform bulletTransform;
     Rigidbody bulletRb;
     Bullet BulletScript;
 
