@@ -3,8 +3,7 @@ using UnityEngine;
 public class PropellerRotation : MonoBehaviour
 {
     public float rotationSpeed = 1000f;
-
-    private bool isRotating = false;
+    public bool isRotating { get; private set; } = false; 
 
     public void StartRotation()
     {

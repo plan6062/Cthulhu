@@ -9,18 +9,29 @@ public class RaftController : MonoBehaviour
     public float moveSpeed = 5f;
 
     private Rigidbody raftRigidbody;
+    private PropellerRotation propellerRotation;
 
     void Start()
     {
         raftRigidbody = GetComponent<Rigidbody>();
+        propellerRotation = GetComponentInChildren<PropellerRotation>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        MoveRaftIfColliding(frontCollider, -transform.up);
-        MoveRaftIfColliding(backCollider, transform.up);
-        MoveRaftIfColliding(leftCollider, -transform.right);
-        MoveRaftIfColliding(rightCollider, transform.right);
+        if (propellerRotation.isRotating)
+        {
+            Debug.Log("Propeller is rotating.");
+
+            MoveRaftIfColliding(frontCollider, -transform.up);
+            MoveRaftIfColliding(backCollider, transform.up);
+            MoveRaftIfColliding(leftCollider, -transform.right);
+            MoveRaftIfColliding(rightCollider, transform.right);
+        }
+        else
+        {
+            Debug.Log("Propeller is not rotating.");
+        }
     }
 
     void MoveRaftIfColliding(Transform colliderTransform, Vector3 direction)
@@ -31,6 +42,7 @@ public class RaftController : MonoBehaviour
         {
             if (collider.CompareTag("Paddle"))
             {
+                Debug.Log("Paddle detected. Moving raft.");
                 raftRigidbody.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
                 return;
             }
