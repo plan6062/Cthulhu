@@ -136,8 +136,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.9724916}
+  m_Center: {x: 0, y: 4.4551477e-16, z: -0.4862449}
 --- !u!1 &2866888992969141885
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,8 +189,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.99847}
+  m_Center: {x: 0, y: 1.0293656e-15, z: -0.49923372}
 --- !u!1 &3717824101045855776
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,8 +242,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.9968054}
+  m_Center: {x: 0, y: 1.0249252e-15, z: -0.4984005}
 --- !u!1 &5063869842642769614
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,8 +295,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.9856937}
+  m_Center: {x: 0, y: 5.158185e-16, z: -0.49284112}
 --- !u!1 &6009652103892108816
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,6 +835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paddle
       objectReference: {fileID: 0}
+    - target: {fileID: 8506424642359072420, guid: 5b2fb67a8d4478d4ca3c0027f5aee7bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1755120702584843809, guid: 5b2fb67a8d4478d4ca3c0027f5aee7bf, type: 3}
     m_RemovedGameObjects: []
@@ -1292,6 +1296,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3352150980970207856}
     m_Modifications:
+    - target: {fileID: 256823907795229858, guid: 3ae9f2927d72c5642a26f8cee1bf797c, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 1824432668934599398, guid: 3ae9f2927d72c5642a26f8cee1bf797c, type: 3}
       propertyPath: bulletGameObj
       value: 
@@ -1318,7 +1326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8426536763483280653, guid: 3ae9f2927d72c5642a26f8cee1bf797c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.16666669
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 8426536763483280653, guid: 3ae9f2927d72c5642a26f8cee1bf797c, type: 3}
       propertyPath: m_LocalPosition.x
