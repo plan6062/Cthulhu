@@ -37,7 +37,7 @@ public class BodySocketInventory : MonoBehaviour
 
     private void UpdateSocketInventory()
     {
-        transform.localPosition = new Vector3(_currentHMDlocalPosition.x, (float)-0.75, _currentHMDlocalPosition.z);
+        transform.localPosition = new Vector3(_currentHMDlocalPosition.x, (float)-0.6, _currentHMDlocalPosition.z);
         transform.rotation = new Quaternion(transform.rotation.x, _currentHMDRotation.y, transform.rotation.z, _currentHMDRotation.w);
     }
 }
