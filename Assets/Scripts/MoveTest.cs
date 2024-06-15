@@ -1,5 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections;
+using UnityEngine.UIElements;
 public class SharkMovement : MonoBehaviour
 {
     public float speed;
@@ -26,6 +28,8 @@ public class SharkMovement : MonoBehaviour
     private bool underWater;
     private float circleMoveTimeCounter;
     public Animator anim;
+    private bool checker1 = true;
+
     
     public State currentState;
     public enum State { CircleMove, MoveTowardBoat_Start,MoveTowardBoat_ing, AttackBoat, Retreat }
@@ -39,24 +43,33 @@ public class SharkMovement : MonoBehaviour
 
     void Update()
     {
-        
         if (currentState == State.CircleMove){
             CircleMove();
         } else if (currentState == State.MoveTowardBoat_Start){
             MoveTowardBoat_Start();
-        } else if (currentState == State.AttackBoat){
+        } else if (currentState == State.Retreat){
             // AttackBoat();
         } 
 
-        if (Input.GetMouseButton(0)){
-            currentState = State.MoveTowardBoat_Start;
-            hasInitializedTargetPosition = false;
-            transform.position = record;
+        if(isHitTiming&& checker1 && isHit){
+            Retreat();
+            StartCoroutine(ExecuteAfterDelay(2));
+              
+            checker1 = false;
+            Debug.Log("체커 팔스");
         }
+
+        // if (Input.GetMouseButton(0)){
+        //     currentState = State.MoveTowardBoat_Start;
+        //     hasInitializedTargetPosition = false;
+        //     transform.position = record;
+        // }
     }
 
+    private Vector3 lastPositionBeforeAttack;
     void CircleMove()
     {
+        sharkGuide.setTrue();
         // X와 Z 좌표는 원형을 그리며 이동
         angle += speed * Time.deltaTime; // 시간에 따라 각도 증가
         float radian = angle * Mathf.Deg2Rad;
@@ -86,6 +99,12 @@ public class SharkMovement : MonoBehaviour
             {
                 y = yTarget; // 최종적으로 yTarget에 고정
                 currentState = State.MoveTowardBoat_Start;
+                underWater = false;
+                circleMoveTimeCounter = 0;
+                Debug.Log("체커 초기화");
+                checker1 = true;
+                isHit = false;
+                
             }
         } else {
             y = Mathf.Lerp(yMin, yMax, Mathf.PerlinNoise(noiseOffsetY, time));
@@ -103,7 +122,7 @@ public class SharkMovement : MonoBehaviour
         transform.LookAt(newPosition_dir);
 
         circleMoveTimeCounter += Time.deltaTime;
-        if (circleMoveTimeCounter > 1){
+        if (circleMoveTimeCounter > 10){
             underWater = true;
         }
         
@@ -126,14 +145,6 @@ public class SharkMovement : MonoBehaviour
         speed = Mathf.MoveTowards(speed, targetSpeed, Time.deltaTime * speedchangerate); // 10f는 속도 변화 속도 조절
     }
 
-    private bool check1 = true;
-    private void MoveTowardBoat_Start_rotation(){
-        Vector3 directionToRaft = (raft.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(directionToRaft);
-        transform.rotation = lookRotation;
-        check1 = false;
-    }
-
     public float closerspeed;
 
     public float jumpHeight = 5f; // 포물선의 최대 높이
@@ -151,6 +162,17 @@ public class SharkMovement : MonoBehaviour
 
     private bool checker = false;
     Vector3 record;
+
+    public bool isHitTiming = false;
+    public bool isHit = false;
+
+    [SerializeField] private Transform FrontpathParent;
+    [SerializeField] private Transform BackpathParent;
+    
+    [SerializeField] private PathType pathType;
+    Vector3[] pathArray;
+    private Sequence sequence_MovetoBoat;
+    public SharkGuide sharkGuide;
     void MoveTowardBoat_Start()
     {
         if (!checker) {
@@ -160,40 +182,101 @@ public class SharkMovement : MonoBehaviour
         }
         if (!hasInitializedTargetPosition)
         {
+            sharkGuide.setFalse();
             // 초기 위치 설정
+            lastPositionBeforeAttack = transform.position;
             initialPosition = transform.position;
             targetPosition = new Vector3(raft.position.x, initialPosition.y, raft.position.z);
             hasInitializedTargetPosition = true;
 
             // XZ 평면상의 거리 계산
             float distance = Vector3.Distance(new Vector3(initialPosition.x, 0, initialPosition.z), new Vector3(targetPosition.x, 0, targetPosition.z));
+
             
             // Dotween 시퀀스 생성
-            Sequence sequence = DOTween.Sequence();
+            sequence_MovetoBoat = DOTween.Sequence();
 
             // 1단계: 거리의 0.6까지 y좌표 변화 없이 이동
             float stage1Distance = distance * closedistance;
             Vector3 stage1Position = initialPosition + (targetPosition - initialPosition).normalized * stage1Distance;
-            sequence.Append(transform.DOMove(new Vector3(stage1Position.x, initialPosition.y, stage1Position.z), stage1Distance / closerspeed).SetEase(Ease.InCubic));
-
-            // 2단계: 거리의 0.8까지 포물선을 그리며 점프
-            float stage2Distance = distance * jumpdistance;
-            Vector3 stage2Position = stage1Position + (targetPosition - stage1Position).normalized * stage2Distance;
-            sequence.Append(transform.DOJump(new Vector3(stage2Position.x, jumpHeight, stage2Position.z), jumpHeight, 1, stage2Distance / closerspeed).SetEase(Ease.OutSine));
-            sequence.Join(transform.DOShakePosition(stage2Distance / speed, shakeStrength, shakeVibrato, 90, false, false).SetLoops(-1, LoopType.Yoyo));
-            // sequence.Join(transform.DORotate(new Vector3( transform.eulerAngles.x,90f, transform.eulerAngles.z), stage2Distance / speed).SetEase(Ease.OutQuad));
-
-            // // 3단계: 거리의 0.9까지 포물선으로 떨어짐
-            // float stage3Distance = distance * downdistance;
-            // Vector3 stage3Position = stage2Position + (targetPosition - stage2Position).normalized * stage3Distance;
-            // sequence.Append(transform.DOMove(new Vector3(stage3Position.x, yTargetDrop, stage3Position.z), stage3Distance / closerspeed).SetEase(Ease.InCubic));
+            sequence_MovetoBoat.Append(transform.DOMove(new Vector3(stage1Position.x, initialPosition.y, stage1Position.z), stage1Distance / closerspeed).SetEase(Ease.InCubic));
+            
+            if(sharkhealth < 1){
+                 
+            } else {
+                // 2단계: 거리의 0.8까지 포물선을 그리며 점프
+                float stage2Distance = distance * jumpdistance;
+                Vector3 stage2Position = stage1Position + (targetPosition - stage1Position).normalized * stage2Distance;
+                
+                // sequence_MovetoBoat.Append(transform.DOPath(pathArray, 5f, pathType).OnComplete(() => {
+                //     Debug.Log("마지막?");
+                //     currentState = State.CircleMove;
+                //     hasInitializedTargetPosition = false;
+                //     checker = false;
+                // }));
+                sequence_MovetoBoat.Append(transform.DOJump(new Vector3(stage2Position.x, jumpHeight, stage2Position.z), jumpHeight, 1, stage2Distance / closerspeed).SetEase(Ease.OutSine));
+                sequence_MovetoBoat.Join(transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 70f), stage2Distance / closerspeed).SetEase(Ease.OutCirc));
+                
+                sequence_MovetoBoat.AppendCallback(() =>
+                {
+                    isHitTiming = true;
+                });
+                
+                sequence_MovetoBoat.AppendInterval(2f);
+                
+                sequence_MovetoBoat.AppendCallback(() => {
+                    if (!isHit && checker1)
+                    {
+                        Debug.Log("JDKsij");
+                        isHitTiming = false;
+                        Vector3[] pathArray = new Vector3[BackpathParent.childCount];
+                        for (int i = 0; i < pathArray.Length; i++)
+                        {
+                            pathArray[i] = BackpathParent.GetChild(i).position;
+                        }
+                        transform.DOPath(pathArray, 5f, pathType).OnComplete(() => {
+                            Debug.Log("마지막?");
+                            currentState = State.CircleMove;
+                            hasInitializedTargetPosition = false;
+                            checker = false;
+                        });
+                    }
+                    }
+                );
+            }
+            
 
             // 시퀀스 실행
-            sequence.Play();
+            sequence_MovetoBoat.Play();
         }
 
         // 애니메이션 설정
         anim.SetBool("bite", true);
+    }
+    IEnumerator ExecuteAfterDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Debug.Log("2초 후 실행");
+        isHitTiming = false;
+        currentState = State.CircleMove;
+        hasInitializedTargetPosition = false;
+        checker = false;
+        
+    }
+
+    private int sharkhealth = 2;
+    void Retreat(){
+        // anim.SetBool("hurt", true);
+        // sequence_MovetoBoat.Kill();
+        Vector3[] pathArray = new Vector3[BackpathParent.childCount];
+        for(int i = 0; i < pathArray.Length; i++)
+        {
+            pathArray[i] = BackpathParent.GetChild(i).position;
+        } 
+        transform.DOPath(pathArray,5f,pathType);
+        sharkhealth--;
+        
+        // isHit = false;        
     }
 
 }

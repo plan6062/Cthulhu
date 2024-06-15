@@ -9,10 +9,12 @@ Library: /Users/hwangjaehyeon/Cthulhu/Temp/BurstOutput/tempburstlibs/arm64-v8a/l
 --float-precision=Standard
 --target-framework=NetFramework
 --float-mode=Fast
+--assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=AssistantCoreSDKRuntime;
 --assembly-defines=Crest;
 --assembly-defines=Crest.Examples;
+--assembly-defines=DOTween;
 --assembly-defines=Facebook.Wit.Dictation;
 --assembly-defines=Meta.Voice.Hub.Runtime;
 --assembly-defines=Meta.Voice.Samples.BuiltInTimer;
@@ -85,10 +87,12 @@ Library: /Users/hwangjaehyeon/Cthulhu/Temp/BurstOutput/tempburstlibs/arm64-v8a/l
 --dump=Function
 --float-precision=Standard
 --target-framework=NetFramework
+--assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=AssistantCoreSDKRuntime;
 --assembly-defines=Crest;
 --assembly-defines=Crest.Examples;
+--assembly-defines=DOTween;
 --assembly-defines=Facebook.Wit.Dictation;
 --assembly-defines=Meta.Voice.Hub.Runtime;
 --assembly-defines=Meta.Voice.Samples.BuiltInTimer;

@@ -739,7 +739,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: CREST_OCEAN;DOTWEEN
+    Android: CREST_OCEAN;DOTWEEN;CROSS_PLATFORM_INPUT;MOBILE_INPUT
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
@@ -749,12 +749,12 @@ PlayerSettings:
     PS5: DOTWEEN
     QNX: DOTWEEN
     Stadia: DOTWEEN
-    Standalone: CREST_OCEAN;DOTWEEN
+    Standalone: CREST_OCEAN;DOTWEEN;CROSS_PLATFORM_INPUT
     VisionOS: DOTWEEN
     WebGL: DOTWEEN
-    Windows Store Apps: DOTWEEN
+    Windows Store Apps: DOTWEEN;MOBILE_INPUT
     XboxOne: DOTWEEN
-    iPhone: DOTWEEN
+    iPhone: DOTWEEN;CROSS_PLATFORM_INPUT;MOBILE_INPUT
     tvOS: DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
