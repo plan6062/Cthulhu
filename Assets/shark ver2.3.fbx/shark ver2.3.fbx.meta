@@ -43,8 +43,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Bite
-      takeName: Armature|Bite
+      name: Armature|Pain (1)
+      takeName: Armature|Pain
       internalID: -4027593636658614796
       firstFrame: 0
       lastFrame: 40
@@ -101,8 +101,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Left Swimming
-      takeName: Armature|Left Swimming
+      name: Armature|Scare_bite
+      takeName: Armature|Scare_bite
       internalID: 7760457800243404969
       firstFrame: 0
       lastFrame: 40
@@ -112,7 +112,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -159,8 +159,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Right Swimming
-      takeName: Armature|Right Swimming
+      name: Armature|Pain
+      takeName: Armature|Pain
       internalID: 2519337592993973904
       firstFrame: 0
       lastFrame: 40
@@ -170,7 +170,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

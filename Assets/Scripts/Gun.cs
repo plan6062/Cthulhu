@@ -10,18 +10,24 @@ public class Gun : MonoBehaviour
     Bullet BulletScript;
 
     public Transform barrel;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    
 
     public bool Shooted { get; set; }
     private void Start(){
         bulletTransform = bulletGameObj.transform;
         bulletRb = bulletGameObj.GetComponent<Rigidbody>();
         BulletScript = bulletGameObj.GetComponent<Bullet>();
+        audioSource.clip = audioClip;
+        
     }
 
     public void Fire(){
         Shooted = true;
         bulletTransform.position = barrel.position;
         bulletRb.velocity = barrel.forward * bulletSpeed;
+        audioSource.Play();
     }
 
     public void CancelFire(){

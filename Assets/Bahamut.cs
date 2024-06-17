@@ -8,6 +8,11 @@ public class Bahamut : MonoBehaviour
 
     public Transform initPosition;
     public Transform EatSharkPosition;
+    public AudioSource EatSharkaudioSource;
+    public AudioClip EatSharkaudioClip;
+
+    public AudioSource ChaseaudioSource;
+    public AudioClip ChaseaudioClip;
     public Transform ChasePosition;
     public int startChecker = 0;
     public Animator anim;
@@ -17,7 +22,8 @@ public class Bahamut : MonoBehaviour
     public float fixedYPosition = 0f; // 고정된 Y 좌표
     
     void Start() {
-        // anim.SetBool("eatshark",true);
+        EatSharkaudioSource.clip = EatSharkaudioClip;
+        ChaseaudioSource.clip = ChaseaudioClip;
     }
 
     public void InitPosition(Transform trans){
@@ -25,9 +31,11 @@ public class Bahamut : MonoBehaviour
         transform.position = trans.position;
     }
     public void EatShark(){
+        
+        EatSharkaudioSource.Play();
         anim.SetBool("eatshark",true);
         transform.position = EatSharkPosition.position;
-        StartCoroutine(StartAfterDelay(5));
+        StartCoroutine(StartAfterDelay(8));
     }
     IEnumerator StartAfterDelay(float time)
     {
@@ -46,7 +54,7 @@ public class Bahamut : MonoBehaviour
     {
         anim.SetBool("chase",true);
         InitPosition(ChasePosition);
-
+        ChaseaudioSource.Play();
     }
     void MoveTowardBoat() {
         
@@ -54,7 +62,7 @@ public class Bahamut : MonoBehaviour
             MoveTowardBoat_init();
             first_MoveTowardBoat = false;
         }
-        Debug.Log("dsjfkls");
+        
         // 현재 위치와 플레이어 위치 계산 (XZ 평면에서만)
         Vector3 targetPosition = new Vector3(raft.position.x, fixedYPosition, raft.position.z);
         Vector3 currentPosition = new Vector3(transform.position.x, fixedYPosition, transform.position.z);

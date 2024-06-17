@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class RaftController : MonoBehaviour
 {
-    public Transform frontCollider;
-    public Transform backCollider;
-    public Transform leftCollider;
-    public Transform rightCollider;
+    // public Transform frontCollider;
+    // public Transform backCollider;
+    // public Transform leftCollider;
+    // public Transform rightCollider;
+    public Transform Collider;
     public float moveSpeed = 5f;
 
     private Rigidbody raftRigidbody;
@@ -23,10 +24,10 @@ public class RaftController : MonoBehaviour
         {
             // Debug.Log("Propeller is rotating.");
 
-            MoveRaftIfColliding(frontCollider, -transform.up);
-            MoveRaftIfColliding(backCollider, transform.up);
-            MoveRaftIfColliding(leftCollider, -transform.right);
-            MoveRaftIfColliding(rightCollider, transform.right);
+            MoveRaftIfColliding(Collider, propellerRotation.direction);
+            // MoveRaftIfColliding(backCollider, transform.up);
+            // MoveRaftIfColliding(leftCollider, -transform.right);
+            // MoveRaftIfColliding(rightCollider, transform.right);
         }
         else
         {

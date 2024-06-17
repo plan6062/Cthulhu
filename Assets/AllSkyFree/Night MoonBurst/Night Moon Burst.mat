@@ -50,9 +50,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Blend: 10500
-    - _Exposure: 0.75
+    - _Exposure: 0
     - _Height: 10000
-    - _Opacity: 0.1
+    - _Opacity: 0.584
     - _Rotation: 0
     m_Colors:
     - _ColorB: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
