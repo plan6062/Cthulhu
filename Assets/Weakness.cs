@@ -3,6 +3,7 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
     public SharkMovement sharkMovement;
+    public Bahamut bahamut;
     
     void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,13 @@ public class BulletCollision : MonoBehaviour
             sharkMovement.isHit = true;
             Debug.Log("Bullet hit detected!");
         }
+         if (other.gameObject.CompareTag("EatLocation") && sharkMovement.sharkhealth < 1)
+        {
+            bahamut.EatShark();
+            Debug.Log("부딛힘");
+            sharkMovement.Death();
+        }
     }
+
     
 }

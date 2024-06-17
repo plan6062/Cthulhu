@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Paddle
   - Monster
+  - EatLocation
+  - Bullet
   layers:
   - Default
   - TransparentFX

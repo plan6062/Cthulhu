@@ -21,7 +21,7 @@ public class RaftController : MonoBehaviour
     {
         if (propellerRotation.isRotating)
         {
-            Debug.Log("Propeller is rotating.");
+            // Debug.Log("Propeller is rotating.");
 
             MoveRaftIfColliding(frontCollider, -transform.up);
             MoveRaftIfColliding(backCollider, transform.up);
@@ -30,7 +30,7 @@ public class RaftController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Propeller is not rotating.");
+            // Debug.Log("Propeller is not rotating.");
         }
     }
 
@@ -42,7 +42,7 @@ public class RaftController : MonoBehaviour
         {
             if (collider.CompareTag("Paddle"))
             {
-                Debug.Log("Paddle detected. Moving raft.");
+                // Debug.Log("Paddle detected. Moving raft.");
                 raftRigidbody.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
                 return;
             }
