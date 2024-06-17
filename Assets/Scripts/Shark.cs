@@ -33,17 +33,22 @@ public class SharkMovement : MonoBehaviour
     public ParticleSystem waterSplash;
     public ParticleSystem BloodSplash;
     public State currentState;
-    public enum State { CircleMove, MoveTowardBoat_Start,MoveTowardBoat_ing, AttackBoat, Retreat }
+    public enum State { Ready, CircleMove, MoveTowardBoat_Start,MoveTowardBoat_ing, AttackBoat, Retreat }
 
     void Start()
-    {
-        currentState = State.CircleMove;
+    {   
+        currentState = State.Ready;
         angle = 0f;
         SetRandomSpeed();
         waterSplash.Stop();
         audioSource.clip = audioClip;
+        StartCoroutine(Ready(20f));
     }
 
+    IEnumerator Ready(float time){
+        yield return new WaitForSeconds(time);
+        currentState = State.CircleMove;
+    }
     void Update()
     {
         if (currentState == State.CircleMove){
@@ -137,7 +142,7 @@ public class SharkMovement : MonoBehaviour
         transform.LookAt(newPosition_dir);
 
         circleMoveTimeCounter += Time.deltaTime;
-        if (circleMoveTimeCounter > 8){
+        if (circleMoveTimeCounter > 5){
             underWater = true;
         }
         
@@ -232,7 +237,7 @@ public class SharkMovement : MonoBehaviour
             
             audioSource.Play();
             sequence_MovetoBoat.Append(transform.DOJump(new Vector3(stage2Position.x, jumpHeight, stage2Position.z), jumpHeight, 1, stage2Distance / closerspeed).SetEase(Ease.OutSine));
-            sequence_MovetoBoat.Join(transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 30f), stage2Distance / closerspeed).SetEase(Ease.OutCirc));
+            sequence_MovetoBoat.Join(transform.DORotate(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 60f), stage2Distance / closerspeed).SetEase(Ease.OutCirc));
             
             sequence_MovetoBoat.AppendCallback(() =>
             {
@@ -289,7 +294,9 @@ public class SharkMovement : MonoBehaviour
         
     }
     public float deathtime;
+    public Gun gun;
     public void Death(){
+        gun.bulletSpeed = gun.bulletSpeed *3f;
         StartCoroutine(DeathAfterDelay(deathtime));
     }
     public int sharkhealth = 2;

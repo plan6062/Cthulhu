@@ -13,8 +13,12 @@ public class Bahamut : MonoBehaviour
 
     public AudioSource ChaseaudioSource;
     public AudioClip ChaseaudioClip;
+    public AudioSource WateraudioSource;
+    public AudioClip WateraudioClip;
     public Transform ChasePosition;
+    public Transform ChasePosition2;
     public int startChecker = 0;
+    public int health = 2;
     public Animator anim;
     public Transform raft; // 플레이어의 Transform
     public float speed = 5f; // 이동 속도
@@ -24,6 +28,7 @@ public class Bahamut : MonoBehaviour
     void Start() {
         EatSharkaudioSource.clip = EatSharkaudioClip;
         ChaseaudioSource.clip = ChaseaudioClip;
+        WateraudioSource.clip = WateraudioClip;
     }
 
     public void InitPosition(Transform trans){
@@ -35,7 +40,8 @@ public class Bahamut : MonoBehaviour
         EatSharkaudioSource.Play();
         anim.SetBool("eatshark",true);
         transform.position = EatSharkPosition.position;
-        StartCoroutine(StartAfterDelay(8));
+        StartCoroutine(StartAfterDelay(10));
+        StartCoroutine(SoundAfterDelay(3.8f));
     }
     IEnumerator StartAfterDelay(float time)
     {
@@ -43,9 +49,17 @@ public class Bahamut : MonoBehaviour
         startChecker = 1;
         
     }
+    IEnumerator SoundAfterDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        WateraudioSource.Play();
+        
+    }
     void Update() {
         if (startChecker ==1){
             MoveTowardBoat();
+        } else if (startChecker ==2){
+            Underwater();
         }
     }
     
@@ -85,5 +99,54 @@ public class Bahamut : MonoBehaviour
 
         // 괴물 이동
         transform.position += newDirection * speed * Time.deltaTime;
+    }
+
+    bool first_Underwater = true;
+    bool startagain = false;
+    IEnumerator Underwater_init(float time)
+    {
+        yield return new WaitForSeconds(time);
+        anim.SetBool("chaseagain1",true);
+        InitPosition(ChasePosition2);
+        ChaseaudioSource.Play();
+        first_Underwater = false;
+        startagain = true;
+       
+    }
+    void Underwater() {
+        if(first_Underwater){
+            StartCoroutine(Underwater_init(10));
+            first_Underwater = false;
+        } 
+        if (startagain) {
+            startChecker = 1;
+            Vector3 targetPosition = new Vector3(raft.position.x, fixedYPosition, raft.position.z);
+            Vector3 currentPosition = new Vector3(transform.position.x, fixedYPosition, transform.position.z);
+
+            // 플레이어를 향한 방향 계산
+            Vector3 direction = (targetPosition - currentPosition).normalized;
+            transform.LookAt(direction);
+        }
+        
+    }
+    IEnumerator WaitForSec(float time){
+        yield return new WaitForSeconds(time);
+        anim.SetBool("die1",true);
+    }
+    public void GetDamage(){
+        ChaseaudioSource.Stop();
+        health--;
+        if(health < 1){
+            startChecker = 3;
+            
+            transform.DOLookAt(raft.position,1f);
+            // transform.DOLookAt(direction,1f);
+            
+            StartCoroutine(WaitForSec(0.5f));
+        } else {
+            startChecker = 2;
+            anim.SetBool("hit1",true);
+            StartCoroutine(SoundAfterDelay(1.7f));
+        }
     }
 }
