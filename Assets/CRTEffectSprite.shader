@@ -1,4 +1,4 @@
-Shader "Custom/CRTEffectSprite"
+Shader "Custom/CRTEffectSpriteWithGlow"
 {
     Properties
     {
@@ -7,15 +7,16 @@ Shader "Custom/CRTEffectSprite"
         _ScanlineIntensity ("Scanline Intensity", Float) = 0.1
         _ScanlineCount ("Scanline Count", Float) = 100
         _GreenTint ("Green Tint", Color) = (0, 1, 0, 1)
+        _GlowIntensity ("Glow Intensity", Float) = 1.0
     }
 
     SubShader
     {
         Tags
-        { 
-            "Queue"="Transparent" 
-            "IgnoreProjector"="True" 
-            "RenderType"="Transparent" 
+        {
+            "Queue"="Transparent"
+            "IgnoreProjector"="True"
+            "RenderType"="Transparent"
             "PreviewType"="Plane"
             "CanUseSpriteAtlas"="True"
         }
@@ -23,15 +24,15 @@ Shader "Custom/CRTEffectSprite"
         Cull Off
         Lighting Off
         ZWrite Off
-        //Blend One OneMinusSrcAlpha
+        Blend One OneMinusSrcAlpha
 
         Pass
         {
-        CGPROGRAM
+            CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
-            
+
             struct appdata_t
             {
                 float4 vertex   : POSITION;
@@ -45,11 +46,12 @@ Shader "Custom/CRTEffectSprite"
                 fixed4 color    : COLOR;
                 float2 texcoord  : TEXCOORD0;
             };
-            
+
             fixed4 _Color;
             float _ScanlineIntensity;
             float _ScanlineCount;
             fixed4 _GreenTint;
+            float _GlowIntensity;
 
             v2f vert(appdata_t IN)
             {
@@ -68,10 +70,14 @@ Shader "Custom/CRTEffectSprite"
                 float scanline = sin(IN.texcoord.y * _ScanlineCount) * 0.5 + 0.5;
                 c *= lerp(1, scanline, _ScanlineIntensity);
                 c.rgb = lerp(c.rgb, c.rgb * _GreenTint.rgb, _GreenTint.a);
-                //c.rgb *= c.a;
+                
+                // Glow 효과 추가
+                c.rgb += c.rgb * _GlowIntensity;
+                
+                c.rgb *= c.a;
                 return c;
             }
-        ENDCG
+            ENDCG
         }
     }
 }
