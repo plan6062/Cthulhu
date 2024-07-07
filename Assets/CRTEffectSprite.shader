@@ -23,7 +23,7 @@ Shader "Custom/CRTEffectSprite"
         Cull Off
         Lighting Off
         ZWrite Off
-        Blend One OneMinusSrcAlpha
+        //Blend One OneMinusSrcAlpha
 
         Pass
         {
@@ -68,7 +68,7 @@ Shader "Custom/CRTEffectSprite"
                 float scanline = sin(IN.texcoord.y * _ScanlineCount) * 0.5 + 0.5;
                 c *= lerp(1, scanline, _ScanlineIntensity);
                 c.rgb = lerp(c.rgb, c.rgb * _GreenTint.rgb, _GreenTint.a);
-                c.rgb *= c.a;
+                //c.rgb *= c.a;
                 return c;
             }
         ENDCG

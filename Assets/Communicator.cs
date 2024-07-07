@@ -43,4 +43,8 @@ public class Communicator : MonoBehaviour
             }
         }
     }
+    public void InsertBattery()
+    {
+        UpdateState(State.PoweredOn);
+    }
 }
