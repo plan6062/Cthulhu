@@ -1,0 +1,80 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StageSpawner_1 : MessageBroker
+{
+    [SerializeField] private Actor boat;
+    [SerializeField] private Actor transmitter;
+    [SerializeField] private Actor propeller;
+    [SerializeField] private Actor lamp;
+    [SerializeField] private Actor corpse_dead;
+    [SerializeField] private Actor corpse_drown;
+    [SerializeField] private Actor picture1;
+    [SerializeField] private Actor picture2;
+    [SerializeField] private Actor battery;
+    [SerializeField] private Actor zone1;
+    [SerializeField] private Actor zone2;
+    [SerializeField] private Actor zone3;
+    [SerializeField] private Actor shark1;
+    [SerializeField] private Actor shark2;
+    [SerializeField] private Actor shark3;
+    [SerializeField] private Actor bahamut;
+    [SerializeField] private Actor reef;
+    [SerializeField] private Actor gun;
+    protected override void ChangeActorState(Stage newStage)
+    {
+        switch (newStage)
+        {
+            case Stage.GameStart:
+                break;
+            case Stage.Opening_Start:
+                Instantiate(boat ,boat.SummonPosition.position ,boat.SummonPosition.rotation);
+                Instantiate(transmitter ,transmitter.SummonPosition.position ,transmitter.SummonPosition.rotation);
+                Instantiate(propeller ,propeller.SummonPosition.position ,propeller.SummonPosition.rotation);
+                Instantiate(lamp ,lamp.SummonPosition.position ,lamp.SummonPosition.rotation);
+
+                // 생성은 여기서 처리하지만, 파괴는 각 인스턴스가 스스로를 파괴한다. 
+                // 보트는 유일하게 처음부터 있어도 되지 않나?
+                // 
+                break;
+            case Stage.Opening_Picture1:
+                Instantiate(picture1, picture1.SummonPosition.position ,picture1.SummonPosition.rotation);
+                break;
+            case Stage.Opening_Picture2:
+                Instantiate(picture2, picture2.SummonPosition.position ,picture2.SummonPosition.rotation);
+                break;
+            case Stage.Opening_Corpse1:
+                break;
+            case Stage.Opening_Picture3:
+                break;
+            case Stage.Opening_Corpse2:
+                break;
+            case Stage.Opening_FindBattery:
+                break;
+            case Stage.Stage1_ConnectSatellite:
+                break;
+            case Stage.Stage1_EnterZone1:
+                break;
+            case Stage.Stage1_EnterZone2:
+                break;
+            case Stage.Stage1_EnterZone3:
+                break;
+            case Stage.Stage1_SharkDissapear:
+                break;
+            case Stage.Stage1_BahamutAppear:
+                break;
+            case Stage.Stage1_BahamutSwimAttack:
+                break;
+            case Stage.Stage1_BahamutSwimAttack_Death:
+                break;
+            case Stage.Stage1_GetClosetoReef:
+                break;
+            case Stage.Stage1_LookThroughHole:
+                break;
+            default:
+                Debug.LogWarning("Incorrect Stage");
+                break;
+        }
+    }
+}
