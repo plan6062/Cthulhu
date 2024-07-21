@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;  // 코루틴
 
 public class Communicator : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Communicator : MonoBehaviour
     }
 
     public StateImage[] stateImages;
+    public float poweredOnDuration = 3f;  // PoweredOn 상태 지속 시간
 
     void Start()
     {
@@ -31,6 +33,12 @@ public class Communicator : MonoBehaviour
     {
         currentState = newState;
         UpdateGUI();
+
+        // PoweredOn 상태로 변경되면 타이머 시작
+        if (newState == State.PoweredOn)
+        {
+            StartCoroutine(PoweredOnTimer());
+        }
     }
 
     private void UpdateGUI()
@@ -43,8 +51,15 @@ public class Communicator : MonoBehaviour
             }
         }
     }
+
     public void InsertBattery()
     {
         UpdateState(State.PoweredOn);
+    }
+
+    private IEnumerator PoweredOnTimer()
+    {
+        yield return new WaitForSeconds(poweredOnDuration);
+        UpdateState(State.SearchingSatellite);
     }
 }
