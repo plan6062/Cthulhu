@@ -8,6 +8,7 @@ TagManager:
   - Monster
   - EatLocation
   - Bullet
+  - ConnectionZone
   layers:
   - Default
   - TransparentFX
