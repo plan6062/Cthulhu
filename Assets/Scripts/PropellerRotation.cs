@@ -20,9 +20,15 @@ public class PropellerRotation : MonoBehaviour
     public float heatIncreaseRate = 10f; // 초당 증가하는 열량
     public float heatDecreaseRate = 5f; // 초당 감소하는 열량
 
+    public ParticleSystem smokeParticleSystem;
+
+
     private void Start()
     {
         audioSource.clip = audioClip;
+        if(smokeParticleSystem != null){
+            smokeParticleSystem.Stop();
+        }
     }
 
     public void StartRotation()
@@ -80,6 +86,10 @@ public class PropellerRotation : MonoBehaviour
             isOverheated = true;
             StopRotation();
             StartCoroutine(CooldownRoutine());
+            if(smokeParticleSystem != null)
+            {
+                smokeParticleSystem.Play();
+            }
         }
     }
 
@@ -88,6 +98,10 @@ public class PropellerRotation : MonoBehaviour
         yield return new WaitForSeconds(cooldownTime);
         isOverheated = false;
         heatGauge = 0f;
+        if(smokeParticleSystem != null)
+        {
+            smokeParticleSystem.Stop();
+        }
     }
 
     // 현재 열 게이지 값을 반환하는 메서드
