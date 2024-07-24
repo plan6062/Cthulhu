@@ -3,14 +3,27 @@ using UnityEngine;
 
 public class MessageBroker : MonoBehaviour
 {
+    public static MessageBroker messageBroker;
     private Stage currentStage;
     public event Action<Stage> BrokerMessage;
+    void Awake()
+    {
+        // 싱글톤 패턴 구현
+        if (messageBroker == null)
+        {
+            messageBroker = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     protected virtual void OnStageChanged_broker(Stage newStage)
     {
         currentStage = newStage;
-        ChangeActorState(newStage);
-        Debug.Log(gameObject.name + " received stage change to: " + newStage);
         BrokerMessage?.Invoke(currentStage);
+        ChangeActorState(newStage);
+        Debug.Log(gameObject.name + " received stage change to: " + newStage); 
     }
 
     protected virtual void ChangeActorState(Stage newStage)

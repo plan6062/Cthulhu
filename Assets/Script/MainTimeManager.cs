@@ -9,7 +9,7 @@ public class MainTimeManager : MonoBehaviour
     // 이벤트 선언
     public event Action<Stage> TimeManagerMessage;
 
-    private Stage currentStage;
+    public Stage currentStage;
 
     void Awake()
     {
