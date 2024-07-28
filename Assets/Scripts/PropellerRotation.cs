@@ -12,6 +12,11 @@ public class PropellerRotation : MonoBehaviour
     public Vector3 direction;
     public Transform target;
 
+    // 암초 관련 변수
+    public GameObject reef;
+    public float reefDetectionRange = 5f;
+    private bool isNearReef = false;
+
     // 과열 시스템 변수
     private float heatGauge = 0f;
     private float maxHeat = 100f;
@@ -33,7 +38,7 @@ public class PropellerRotation : MonoBehaviour
 
     public void StartRotation()
     {
-        if (!isOverheated)
+        if (!isOverheated && !isNearReef)
         {
             isRotating = true;
             audioSource.Play();
@@ -47,25 +52,65 @@ public class PropellerRotation : MonoBehaviour
     }
 
     void Update()
+{
+    Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
+    Vector3 currentPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+    direction = (targetPosition - currentPosition).normalized;
+
+    if (reef != null)
     {
-        Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
-        Vector3 currentPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        float distanceToReef = Vector3.Distance(transform.position, reef.transform.position);
+        Debug.Log($"Distance to reef: {distanceToReef}");
 
-        direction = (targetPosition - currentPosition).normalized;
-
-        if (isRotating)
+        if (distanceToReef < reefDetectionRange && !isNearReef)
         {
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-            IncreaseHeat();
+            isNearReef = true;
+            Debug.Log("Entered reef detection range!");
+            StopRotation();
+            if (smokeParticleSystem != null)
+            {
+                smokeParticleSystem.Play();
+                Debug.Log("Smoke particle system started");
+            }
         }
-        else
+        else if (distanceToReef >= reefDetectionRange && isNearReef)
         {
-            DecreaseHeat();
+            isNearReef = false;
+            Debug.Log("Exited reef detection range!");
+            if (!isOverheated)
+            {
+                StartRotation();
+                Debug.Log("Rotation restarted");
+            }
+            if (smokeParticleSystem != null)
+            {
+                smokeParticleSystem.Stop();
+                Debug.Log("Smoke particle system stopped");
+            }
         }
-
-        // 과열 체크
-        CheckOverheat();
     }
+    else
+    {
+        Debug.LogWarning("Reef object is not assigned!");
+    }
+
+    if (isRotating)
+    {
+        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+        IncreaseHeat();
+    }
+    else
+    {
+        DecreaseHeat();
+    }
+
+    // 과열 체크
+    CheckOverheat();
+
+    // 현재 상태 로그
+    Debug.Log($"Current state - IsRotating: {isRotating}, IsNearReef: {isNearReef}, IsOverheated: {isOverheated}, HeatGauge: {heatGauge}");
+}
 
     private void IncreaseHeat()
     {
@@ -101,6 +146,10 @@ public class PropellerRotation : MonoBehaviour
         if(smokeParticleSystem != null)
         {
             smokeParticleSystem.Stop();
+        }
+        if (!isNearReef)
+        {
+            StartRotation();
         }
     }
 
