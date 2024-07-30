@@ -61,38 +61,32 @@ public class PropellerRotation : MonoBehaviour
     if (reef != null)
     {
         float distanceToReef = Vector3.Distance(transform.position, reef.transform.position);
-        Debug.Log($"Distance to reef: {distanceToReef}");
 
         if (distanceToReef < reefDetectionRange && !isNearReef)
         {
             isNearReef = true;
-            Debug.Log("Entered reef detection range!");
             StopRotation();
             if (smokeParticleSystem != null)
             {
                 smokeParticleSystem.Play();
-                Debug.Log("Smoke particle system started");
             }
         }
         else if (distanceToReef >= reefDetectionRange && isNearReef)
         {
             isNearReef = false;
-            Debug.Log("Exited reef detection range!");
             if (!isOverheated)
             {
                 StartRotation();
-                Debug.Log("Rotation restarted");
             }
             if (smokeParticleSystem != null)
             {
                 smokeParticleSystem.Stop();
-                Debug.Log("Smoke particle system stopped");
             }
         }
     }
     else
     {
-        Debug.LogWarning("Reef object is not assigned!");
+        Debug.LogWarning("reef 오브젝트 설정 필요");
     }
 
     if (isRotating)
@@ -108,8 +102,8 @@ public class PropellerRotation : MonoBehaviour
     // 과열 체크
     CheckOverheat();
 
-    // 현재 상태 로그
-    Debug.Log($"Current state - IsRotating: {isRotating}, IsNearReef: {isNearReef}, IsOverheated: {isOverheated}, HeatGauge: {heatGauge}");
+    
+   // Debug.Log($"Current state - IsRotating: {isRotating}, IsNearReef: {isNearReef}, IsOverheated: {isOverheated}, HeatGauge: {heatGauge}");
 }
 
     private void IncreaseHeat()
