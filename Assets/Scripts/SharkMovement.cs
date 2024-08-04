@@ -198,7 +198,7 @@ public class SharkMovement : MonoBehaviour
     Vector3[] pathArray;
     private Sequence sequence_MovetoBoat;
     public SharkGuide sharkGuide;
-    public Bahamut bahamut;
+    public _Bahamut bahamut;
 
     public float dist1;
     public float disty;

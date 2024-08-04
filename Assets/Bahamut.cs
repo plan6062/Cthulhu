@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class Bahamut : MonoBehaviour
+public class _Bahamut : MonoBehaviour
 {
 
     public Transform initPosition;

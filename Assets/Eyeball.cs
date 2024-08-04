@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Eyeball : MonoBehaviour
 {
-    public Bahamut bahamut;
+    public _Bahamut bahamut;
     public ParticleSystem particleSystem; 
     public bool testDamage;
 

@@ -16,9 +16,9 @@ public class StageSpawner_1 : MessageBroker
     [SerializeField] private Actor zone1;
     [SerializeField] private Actor zone2;
     [SerializeField] private Actor zone3;
-    [SerializeField] private Actor shark1;
-    [SerializeField] private Actor shark2;
-    [SerializeField] private Actor shark3;
+    [SerializeField] private Actor sharkspawner1;
+    [SerializeField] private Actor sharkspawner2;
+    [SerializeField] private Actor sharkspawner3;
     [SerializeField] private Actor bahamut;
     [SerializeField] private Actor reef;
     [SerializeField] private Actor gun;
@@ -55,6 +55,7 @@ public class StageSpawner_1 : MessageBroker
             case Stage.Stage1_ConnectSatellite:
                 break;
             case Stage.Stage1_EnterZone1:
+                Instantiate(sharkspawner1, sharkspawner1.SummonPosition.position ,sharkspawner1.SummonPosition.rotation);
                 break;
             case Stage.Stage1_EnterZone2:
                 break;
