@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Communicator : MonoBehaviour
+public class Communicator : Actor
 {
     public enum State
     {

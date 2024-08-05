@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : Actor
 {
     [Header("Bullet Info")]
     public GameObject bulletGameObj;

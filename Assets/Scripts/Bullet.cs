@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Actor
 {
     FixedJoint fixedJoint;
     public AudioSource audioSource;

@@ -22,6 +22,8 @@ public class StageSpawner_1 : MessageBroker
     [SerializeField] private Actor bahamut;
     [SerializeField] private Actor reef;
     [SerializeField] private Actor gun;
+    [SerializeField] private Actor bullet; //추가
+
     protected override void ChangeActorState(Stage newStage)
     {
         switch (newStage)
