@@ -16,6 +16,7 @@ public class StageSpawner_1 : MessageBroker
     [SerializeField] private Actor zone1;
     [SerializeField] private Actor zone2;
     [SerializeField] private Actor zone3;
+    [SerializeField] private Actor zone4;
     [SerializeField] private Actor sharkspawner1;
     [SerializeField] private Actor sharkspawner2;
     [SerializeField] private Actor sharkspawner3;
@@ -33,8 +34,8 @@ public class StageSpawner_1 : MessageBroker
             case Stage.Opening_Start:
                 Instantiate(boat ,boat.SummonPosition.position ,boat.SummonPosition.rotation);
                 Instantiate(transmitter ,transmitter.SummonPosition.position ,transmitter.SummonPosition.rotation);
-                Instantiate(propeller ,propeller.SummonPosition.position ,propeller.SummonPosition.rotation);
-                Instantiate(lamp ,lamp.SummonPosition.position ,lamp.SummonPosition.rotation);
+                //Instantiate(propeller ,propeller.SummonPosition.position ,propeller.SummonPosition.rotation);
+                //Instantiate(lamp ,lamp.SummonPosition.position ,lamp.SummonPosition.rotation);
 
                 // 생성은 여기서 처리하지만, 파괴는 각 인스턴스가 스스로를 파괴한다. 
                 // 보트는 유일하게 처음부터 있어도 되지 않나?
@@ -47,10 +48,12 @@ public class StageSpawner_1 : MessageBroker
                 Instantiate(picture2, picture2.SummonPosition.position ,picture2.SummonPosition.rotation);
                 break;
             case Stage.Opening_Corpse1:
+                Instantiate(corpse_dead, corpse_dead.SummonPosition.position ,corpse_dead.SummonPosition.rotation);
                 break;
             case Stage.Opening_Picture3:
                 break;
             case Stage.Opening_Corpse2:
+                Instantiate(corpse_drown, corpse_drown.SummonPosition.position ,corpse_drown.SummonPosition.rotation);
                 break;
             case Stage.Opening_FindBattery:
                 break;

@@ -34,6 +34,10 @@ public class PropellerRotation : MonoBehaviour
         if(smokeParticleSystem != null){
             smokeParticleSystem.Stop();
         }
+        if (reef == null)
+        {
+            reef = GameObject.FindGameObjectWithTag("Reef"); 
+        }
     }
 
     public void StartRotation()
