@@ -9,6 +9,8 @@ TagManager:
   - EatLocation
   - Bullet
   - ConnectionZone
+  - Reef
+  - Raft
   layers:
   - Default
   - TransparentFX
