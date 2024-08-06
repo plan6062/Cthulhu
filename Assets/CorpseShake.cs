@@ -6,9 +6,9 @@ public class CorpseShakeAndSink : Actor
     public float shakeAmount = 0.1f;
     public float shakeSpeed = 10f;
     public float sinkSpeed = 2f;
-    public float detectionRange = 3f;
-    public GameObject player;
+    public float detectionRange = 15f;
 
+    private GameObject player;
     private Vector3 initialPosition;
     private bool isSinking = false;
 
@@ -19,7 +19,11 @@ public class CorpseShakeAndSink : Actor
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null) return;
+        }
 
         float distance = Vector3.Distance(transform.position, player.transform.position);
 
@@ -44,15 +48,14 @@ public class CorpseShakeAndSink : Actor
 
         transform.position = newPosition;
 
-    
         // 다음 스테이지로 넘어가기 위한 조건이 만족되었을 때,
-        if(transform.position.y < -5){
-            
+        if(transform.position.y < -3)
+        {
             // MainTimaManager 인스턴스의 SetStage 메서드로 스테이지를 변경한다.
-            MainTimeManager.Instance.SetStage(Stage.Opening_Corpse2);
-            
+            MainTimeManager.Instance.SetStage(Stage.Opening_FindBattery);
+
             // 이 게임오브젝트가 나중에 더 쓰일 일이 없다면 스스로를 파괴한다.
-            gameObject.Destroy();
+            Destroy(gameObject);
         }
     }
 }

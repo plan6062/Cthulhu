@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class Raft : Actor
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float firstStageThreshold = 10f;
+    public float secondStageThreshold = 40f;
+    private bool firstStageTriggered = false;
+    private bool secondStageTriggered = false;
 
-    // Update is called once per frame
     void Update()
     {
-        if(transform.position.z > 20){
+        if (!secondStageTriggered && transform.position.z > secondStageThreshold)
+        {
+            MainTimeManager.Instance.SetStage(Stage.Opening_Corpse2);
+            secondStageTriggered = true;
+        }
+        else if (!firstStageTriggered && transform.position.z > firstStageThreshold)
+        {
             MainTimeManager.Instance.SetStage(Stage.Opening_Corpse1);
+            firstStageTriggered = true;
         }
     }
 }

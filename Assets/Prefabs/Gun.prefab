@@ -84,7 +84,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6984995538396544492
 Transform:
   m_ObjectHideFlags: 0
@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00742ea8bacd9c145b135d42ac742d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SummonPosition: {fileID: 6984995538396544492}
   bulletGameObj: {fileID: 0}
   bulletSpeed: 50
   bulletTransform: {fileID: 0}

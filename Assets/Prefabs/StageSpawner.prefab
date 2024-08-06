@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5263731457606352288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543480707658562497}
+  - component: {fileID: 6330769328089522063}
+  m_Layer: 0
+  m_Name: StageSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &543480707658562497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263731457606352288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6549102, y: 1.6022536, z: 7.3708997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6330769328089522063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263731457606352288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc636055cd754769887c1f6772d6bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boat: {fileID: 8094921299826483779, guid: 4dba6812ff1967043943e7bd1b9ad48e, type: 3}
+  transmitter: {fileID: 5679093957998387503, guid: 17fe380e1c4df80479b7d39e52e2a499, type: 3}
+  propeller: {fileID: 0}
+  lamp: {fileID: 0}
+  corpse_dead: {fileID: 4556140982334768510, guid: 65017eba4784a374b9839463636e3942, type: 3}
+  corpse_drown: {fileID: 1254001771139166160, guid: a1823ea9bd50e7a4aa022c52f9ef138d, type: 3}
+  picture1: {fileID: 0}
+  picture2: {fileID: 0}
+  battery: {fileID: 0}
+  zone1: {fileID: 0}
+  zone2: {fileID: 0}
+  zone3: {fileID: 0}
+  zone4: {fileID: 0}
+  sharkspawner1: {fileID: 0}
+  sharkspawner2: {fileID: 0}
+  sharkspawner3: {fileID: 0}
+  bahamut: {fileID: 0}
+  reef: {fileID: 0}
+  gun: {fileID: 0}
+  bullet: {fileID: 0}

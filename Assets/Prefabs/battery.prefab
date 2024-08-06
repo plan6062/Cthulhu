@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: battery
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6b1cdf1ecb8437142bfbaa73ca9edf6f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -115,6 +119,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b1cdf1ecb8437142bfbaa73ca9edf6f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4995617412493401446}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b1cdf1ecb8437142bfbaa73ca9edf6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6812365037224800752}
   m_SourcePrefab: {fileID: 100100000, guid: 6b1cdf1ecb8437142bfbaa73ca9edf6f, type: 3}
 --- !u!4 &2580398196713039379 stripped
 Transform:
@@ -326,3 +333,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2226752, y: 0.5698148, z: 0.37037072}
   m_Center: {x: -0.0064077824, y: 0.0019617302, z: -0.0008518437}
+--- !u!114 &6812365037224800752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2919663867880799401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5fc1acc833a5d4582f7b97b5d6848b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonPosition: {fileID: 0}

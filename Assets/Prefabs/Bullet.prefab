@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5209035723370656471
 Transform:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caedf306a7fda8043bb74d9ca98733b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SummonPosition: {fileID: 0}
+  SummonPosition: {fileID: 5209035723370656471}
   audioSource: {fileID: 1335956587492580241}
   audioClip: {fileID: 8300000, guid: 7b577bfb339309444aa30ace53693bea, type: 3}
 --- !u!54 &4970033254266183147

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4369018680859409419}
   - component: {fileID: 899070909861509717}
   - component: {fileID: 1209095694670381015}
+  - component: {fileID: 9165530923485347949}
   m_Layer: 0
   m_Name: ConnectionZone100
   m_TagString: ConnectionZone
@@ -105,6 +106,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9165530923485347949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36053496221647763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3fbc43b4055c94f88016459ba94c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonPosition: {fileID: 7313308458949958933}
 --- !u!1 &6481929358916760583
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +131,7 @@ GameObject:
   - component: {fileID: 4673247443689072986}
   - component: {fileID: 1810919991011045738}
   - component: {fileID: 701545451300816778}
+  - component: {fileID: 7413644992638441609}
   m_Layer: 0
   m_Name: ConnectionZone30
   m_TagString: ConnectionZone
@@ -210,6 +225,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7413644992638441609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481929358916760583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4156321952909454a9c9ba3397eb34e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonPosition: {fileID: 6575489990079800776}
 --- !u!1 &6518704686606584586
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7435359075016856995
 Transform:
   m_ObjectHideFlags: 0
@@ -257,6 +285,7 @@ GameObject:
   - component: {fileID: 4937037420267462104}
   - component: {fileID: 8067923314972758929}
   - component: {fileID: 4276297662194763839}
+  - component: {fileID: 3358701687411040419}
   m_Layer: 0
   m_Name: ConnectionZone50
   m_TagString: ConnectionZone
@@ -350,6 +379,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3358701687411040419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986991333836493916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 215381356ef90424287d38d96fcde256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonPosition: {fileID: 8591362580880277509}
 --- !u!1 &8358401867785441347
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +404,7 @@ GameObject:
   - component: {fileID: 157016910292323330}
   - component: {fileID: 8807093488805059880}
   - component: {fileID: 6561921052227498770}
+  - component: {fileID: 5387806360126593431}
   m_Layer: 0
   m_Name: ConnectionZone70
   m_TagString: ConnectionZone
@@ -455,3 +498,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5387806360126593431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8358401867785441347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbc68344685ddb43a4b51a4d7de9ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonPosition: {fileID: 3729015426890894257}
