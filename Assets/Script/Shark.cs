@@ -3,13 +3,107 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Shark : Actor
 {
     Quaternion headRotation;
-    void Start(){
-        
-        
+    public Transform shark;
+    public LineRenderer lineRenderer;
+    public int numPoints = 50;
+    public float moveSpeed = 5f;
+
+    // Fixed points and parameters
+    public Vector3 P0;
+    private Vector3 P3;
+    public Vector3 direction; // This should be a normalized vector
+    public float distanceM; // 이 값은 매번 랜덤 범위로 정해진다.
+
+    private Vector3[] points;
+    private int currentPointIndex = 0;
+
+    void Start()
+    {
+        GenerateBezierCurve();
+        lineRenderer.positionCount = points.Length;
+        lineRenderer.SetPositions(points);
+        StartCoroutine(MoveAlongCurve());
+    }
+
+    void GenerateBezierCurve()
+    {
+        // Define P3
+        Vector3 P3 = P0 + direction * distanceM;
+
+        // Define a vector perpendicular to the line P0P3
+        Vector3 perpendicular = Vector3.Cross(direction, Vector3.up).normalized * (distanceM / 6);
+
+        // Define P1 and P2 with some y-axis offset
+        Vector3 yOffset = new Vector3(0, distanceM / 6, 0);
+        Vector3 P1 = P0 + perpendicular + yOffset;
+        Vector3 P2 = P3 + perpendicular - yOffset;
+
+        // If perpendicular is zero vector, use another axis
+        if (perpendicular == Vector3.zero)
+        {
+            perpendicular = Vector3.Cross(direction, Vector3.forward).normalized * (distanceM / 6);
+            P1 = P0 + perpendicular + yOffset;
+            P2 = P3 + perpendicular - yOffset;
+        }
+
+        // Calculate points on the Bezier curve
+        points = new Vector3[numPoints];
+        for (int i = 0; i < numPoints; i++)
+        {
+            float t = i / (float)(numPoints - 1);
+            points[i] = CalculateCubicBezierPoint(t, P0, P1, P2, P3);
+        }
+    }
+
+    Vector3 CalculateCubicBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+    {
+        float u = 1 - t;
+        float tt = t * t;
+        float uu = u * u;
+        float uuu = uu * u;
+        float ttt = tt * t;
+
+        Vector3 p = uuu * p0;
+        p += 3 * uu * t * p1;
+        p += 3 * u * tt * p2;
+        p += ttt * p3;
+
+        return p;
+    }
+
+    IEnumerator MoveAlongCurve()
+    {
+        while (true)
+        {
+            if (currentPointIndex >= points.Length)
+            {
+                currentPointIndex = 0;
+                yield return new WaitForSeconds(3);
+                P0 = P3; // 이부분 이대로 가면 어색함. P0를 새로고침하는 과정을 조금 더 자연스럽게. 
+                GenerateBezierCurve();
+            }
+
+            Vector3 targetPosition = points[currentPointIndex];
+            while (Vector3.Distance(shark.position, targetPosition) > 0.1f)
+            {
+                shark.position = Vector3.MoveTowards(shark.position, targetPosition, moveSpeed * Time.deltaTime);
+                Vector3 direction = targetPosition - shark.position;
+                if (direction != Vector3.zero)
+                {
+                    Quaternion rotation = Quaternion.LookRotation(direction);
+                    shark.rotation = Quaternion.Slerp(shark.rotation, rotation, Time.deltaTime * moveSpeed);
+                }
+                yield return null;
+            }
+
+            currentPointIndex++;
+            yield return null;
+        }
     }
 
     public void Retreat(){

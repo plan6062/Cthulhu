@@ -16,6 +16,12 @@ public enum Stage
     Stage1_BahamutAppear,
     Stage1_BahamutSwimAttack,
     Stage1_BahamutSwimAttack_Death,
+
     Stage1_GetClosetoReef,
+    // 플레이어와 암초의 거리가 n 이하로 되었을 경우
+    Stage1_StopBoat,
     Stage1_LookThroughHole,
+    Stage1_SwimStop,
+    Stage1_FindBahamut
+    // 플레이어의 시야 벡터가 구멍을 향한 순간
 }

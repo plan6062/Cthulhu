@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -34,5 +35,20 @@ public class EyeTracker : MonoBehaviour {
         rotation = Quaternion.identity;
         return false;
     }
+    Quaternion playerRotation;
+    public bool CheckSightCollison(GameObject caster, String targetTag)
+    {
+        TryGetCenterEyeNodeStateRotation(out playerRotation);
+        Ray ray = new Ray(caster.transform.position, playerRotation * Vector3.forward);
+        RaycastHit hit;
 
+        if (Physics.Raycast(ray, out hit, 100) && hit.transform.CompareTag(targetTag))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+    }
 }

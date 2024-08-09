@@ -45,6 +45,7 @@ public class RaftController : MonoBehaviour
             {
                 // Debug.Log("Paddle detected. Moving raft.");
                 raftRigidbody.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
+                // 이부분 AddForce로 수정해야 할 듯. 
                 return;
             }
         }
