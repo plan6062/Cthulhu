@@ -83,6 +83,8 @@ public class Communicator : Actor
         if (currentState == State.NoBattery)
         {
             UpdateState(State.PoweredOn);
+            MainTimeManager.Instance.SetStage(Stage.Stage1_ConnectSatellite);
+
         }
     }
 
