@@ -5967,6 +5967,18 @@ PrefabInstance:
       value: Motorrola_lowpoly
       objectReference: {fileID: 0}
     - target: {fileID: 4596093846796585781, guid: 17fe380e1c4df80479b7d39e52e2a499, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596093846796585781, guid: 17fe380e1c4df80479b7d39e52e2a499, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596093846796585781, guid: 17fe380e1c4df80479b7d39e52e2a499, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596093846796585781, guid: 17fe380e1c4df80479b7d39e52e2a499, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.439
       objectReference: {fileID: 0}

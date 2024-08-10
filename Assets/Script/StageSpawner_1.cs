@@ -6,17 +6,17 @@ public class StageSpawner_1 : MessageBroker
 {
     [SerializeField] private Actor boat;
     [SerializeField] private Actor transmitter;
-    [SerializeField] private Actor propeller;
-    [SerializeField] private Actor lamp;
+    //[SerializeField] private Actor propeller;
+    //[SerializeField] private Actor lamp;
     [SerializeField] private Actor corpse_dead;
     [SerializeField] private Actor corpse_drown;
     [SerializeField] private Actor picture1;
     [SerializeField] private Actor picture2;
     [SerializeField] private Actor battery;
     [SerializeField] private Actor zone1;
-    [SerializeField] private Actor zone2;
-    [SerializeField] private Actor zone3;
-    [SerializeField] private Actor zone4;
+    //[SerializeField] private Actor zone2;
+    //[SerializeField] private Actor zone3;
+    //[SerializeField] private Actor zone4;
     [SerializeField] private Actor sharkspawner1;
     [SerializeField] private Actor sharkspawner2;
     [SerializeField] private Actor sharkspawner3;
@@ -33,6 +33,7 @@ public class StageSpawner_1 : MessageBroker
                 break;
             case Stage.Opening_Start:
                 Instantiate(boat ,boat.SummonPosition.position ,boat.SummonPosition.rotation);
+                Instantiate(reef ,reef.SummonPosition.position ,reef.SummonPosition.rotation);
                 //Instantiate(transmitter ,transmitter.SummonPosition.position ,transmitter.SummonPosition.rotation);
                 //Instantiate(propeller ,propeller.SummonPosition.position ,propeller.SummonPosition.rotation);
                 //Instantiate(lamp ,lamp.SummonPosition.position ,lamp.SummonPosition.rotation);
@@ -59,6 +60,7 @@ public class StageSpawner_1 : MessageBroker
                 Instantiate(battery, battery.SummonPosition.position ,battery.SummonPosition.rotation);
                 break;
             case Stage.Stage1_ConnectSatellite:
+                Instantiate(zone1, zone1.SummonPosition.position ,zone1.SummonPosition.rotation);
                 break;
             case Stage.Stage1_EnterZone1:
                 //Instantiate(sharkspawner1, sharkspawner1.SummonPosition.position ,sharkspawner1.SummonPosition.rotation);
