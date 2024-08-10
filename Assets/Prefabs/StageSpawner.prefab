@@ -48,9 +48,9 @@ MonoBehaviour:
   transmitter: {fileID: 5679093957998387503, guid: 17fe380e1c4df80479b7d39e52e2a499, type: 3}
   corpse_dead: {fileID: 4556140982334768510, guid: 65017eba4784a374b9839463636e3942, type: 3}
   corpse_drown: {fileID: 1254001771139166160, guid: a1823ea9bd50e7a4aa022c52f9ef138d, type: 3}
-  picture1: {fileID: 0}
-  picture2: {fileID: 0}
-  battery: {fileID: 0}
+  picture1: {fileID: 2120105484051014157, guid: 888fb4754ebb19746813a492fb8fd1f0, type: 3}
+  picture2: {fileID: -4838745007468336893, guid: 31f339869c3847849aa9fcea67add489, type: 3}
+  battery: {fileID: 6812365037224800752, guid: 916e6edf4972a614e9fb29a3e1384bf8, type: 3}
   zone1: {fileID: 8790359684739354821, guid: ee6adeef586c509468968ae91175f4d2, type: 3}
   sharkspawner1: {fileID: 0}
   sharkspawner2: {fileID: 0}
