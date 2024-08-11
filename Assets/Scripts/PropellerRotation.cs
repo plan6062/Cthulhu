@@ -15,18 +15,17 @@ public class PropellerRotation : MonoBehaviour
     // 암초 관련 변수
     public GameObject reef;
     public float reefDetectionRange = 5f;
-    private bool isNearReef = false;
+    private bool hasTriggeredReefOverheat = false;
 
     // 과열 시스템 변수
     private float heatGauge = 0f;
     private float maxHeat = 100f;
     private float cooldownTime = 5f;
     private bool isOverheated = false;
-    public float heatIncreaseRate = 10f; // 초당 증가하는 열량
-    public float heatDecreaseRate = 5f; // 초당 감소하는 열량
+    public float heatIncreaseRate = 10f;
+    public float heatDecreaseRate = 5f;
 
     public ParticleSystem smokeParticleSystem;
-
 
     private void Start()
     {
@@ -36,13 +35,13 @@ public class PropellerRotation : MonoBehaviour
         }
         if (reef == null)
         {
-            reef = GameObject.FindGameObjectWithTag("Reef"); 
+            reef = GameObject.FindGameObjectWithTag("Reef");
         }
     }
 
     public void StartRotation()
     {
-        if (!isOverheated && !isNearReef)
+        if (!isOverheated)
         {
             isRotating = true;
             audioSource.Play();
@@ -56,59 +55,41 @@ public class PropellerRotation : MonoBehaviour
     }
 
     void Update()
-{
-    Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
-    Vector3 currentPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-
-    direction = (targetPosition - currentPosition).normalized;
-
-    if (reef != null)
     {
-        float distanceToReef = Vector3.Distance(transform.position, reef.transform.position);
+        Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
+        Vector3 currentPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
-        if (distanceToReef < reefDetectionRange && !isNearReef)
+        direction = (targetPosition - currentPosition).normalized;
+
+        if (reef != null && !hasTriggeredReefOverheat)
         {
-            isNearReef = true;
-            StopRotation();
-            if (smokeParticleSystem != null)
+            float distanceToReef = Vector3.Distance(transform.position, reef.transform.position);
+
+            if (distanceToReef < reefDetectionRange)
             {
-                smokeParticleSystem.Play();
+                TriggerReefOverheat();
             }
         }
-        else if (distanceToReef >= reefDetectionRange && isNearReef)
+
+        if (isRotating)
         {
-            isNearReef = false;
-            if (!isOverheated)
-            {
-                StartRotation();
-            }
-            if (smokeParticleSystem != null)
-            {
-                smokeParticleSystem.Stop();
-            }
+            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            IncreaseHeat();
         }
-    }
-    else
-    {
-        Debug.LogWarning("reef 오브젝트 설정 필요");
+        else
+        {
+            DecreaseHeat();
+        }
+
+        CheckOverheat();
     }
 
-    if (isRotating)
+    private void TriggerReefOverheat()
     {
-        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
-        IncreaseHeat();
+        heatGauge = maxHeat;
+        hasTriggeredReefOverheat = true;
+        CheckOverheat();
     }
-    else
-    {
-        DecreaseHeat();
-    }
-
-    // 과열 체크
-    CheckOverheat();
-
-    
-   // Debug.Log($"Current state - IsRotating: {isRotating}, IsNearReef: {isNearReef}, IsOverheated: {isOverheated}, HeatGauge: {heatGauge}");
-}
 
     private void IncreaseHeat()
     {
@@ -145,13 +126,9 @@ public class PropellerRotation : MonoBehaviour
         {
             smokeParticleSystem.Stop();
         }
-        if (!isNearReef)
-        {
-            StartRotation();
-        }
+        StartRotation();
     }
 
-    // 현재 열 게이지 값을 반환하는 메서드
     public float GetHeatGaugePercentage()
     {
         return (heatGauge / maxHeat) * 100f;
