@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc636055cd754769887c1f6772d6bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boat: {fileID: 8094921299826483779, guid: 4dba6812ff1967043943e7bd1b9ad48e, type: 3}
+  boat: {fileID: 6384392644258786573, guid: e2405992fe1f76e468254d8a978f6517, type: 3}
   transmitter: {fileID: 5679093957998387503, guid: 17fe380e1c4df80479b7d39e52e2a499, type: 3}
   corpse_dead: {fileID: 4556140982334768510, guid: 65017eba4784a374b9839463636e3942, type: 3}
   corpse_drown: {fileID: 1254001771139166160, guid: a1823ea9bd50e7a4aa022c52f9ef138d, type: 3}
@@ -59,3 +59,4 @@ MonoBehaviour:
   reef: {fileID: 9015339694137838152, guid: 5a74aad7166f32d49b0ceb7ee0dc1a19, type: 3}
   gun: {fileID: 1034024966427940844, guid: 0825f81bef63c51479df845abda76cf1, type: 3}
   bullet: {fileID: 551772684847545912, guid: e9497b3c2a636a640a1983733b0501f8, type: 3}
+  thunder: {fileID: 3717912245433977626, guid: cacea405ad7666a43b67041ecd275cac, type: 3}

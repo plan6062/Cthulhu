@@ -23,7 +23,8 @@ public class StageSpawner_1 : MessageBroker
     [SerializeField] private Actor bahamut;
     [SerializeField] private Actor reef;
     [SerializeField] private Actor gun;
-    [SerializeField] private Actor bullet; //추가
+    [SerializeField] private Actor bullet;
+    [SerializeField] private Actor thunder; //추가
 
     protected override void ChangeActorState(Stage newStage)
     {
@@ -34,6 +35,7 @@ public class StageSpawner_1 : MessageBroker
             case Stage.Opening_Start:
                 Instantiate(boat ,boat.SummonPosition.position ,boat.SummonPosition.rotation);
                 Instantiate(reef ,reef.SummonPosition.position ,reef.SummonPosition.rotation);
+                Instantiate(thunder ,thunder.SummonPosition.position ,thunder.SummonPosition.rotation);
                 //Instantiate(transmitter ,transmitter.SummonPosition.position ,transmitter.SummonPosition.rotation);
                 //Instantiate(propeller ,propeller.SummonPosition.position ,propeller.SummonPosition.rotation);
                 //Instantiate(lamp ,lamp.SummonPosition.position ,lamp.SummonPosition.rotation);
