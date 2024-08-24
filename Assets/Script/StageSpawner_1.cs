@@ -38,7 +38,8 @@ public class StageSpawner_1 : MessageBroker
             case Stage.GameStart:
                 break;
             case Stage.Opening_Start:
-
+                Summon(reef);
+                Summon(thunder);
                 // 생성은 여기서 처리하지만, 파괴는 각 인스턴스가 스스로를 파괴한다. 
                 // 보트는 유일하게 처음부터 있어도 되지 않나?
                 // 
