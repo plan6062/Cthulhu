@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
-   public Transform SummonPosition;
    protected void SubscribeToStageChanges()
     {
         MessageBroker.messageBroker.BrokerMessage += Acting;

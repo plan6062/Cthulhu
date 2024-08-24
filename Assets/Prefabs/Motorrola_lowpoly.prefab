@@ -2202,7 +2202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6249db58cc4aa7d49a68a0caaed2d84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SummonPosition: {fileID: 4596093846796585781}
+  SummonPosition: {fileID: 0}
   currentState: 0
   stateImages:
   - state: 0

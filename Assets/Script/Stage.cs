@@ -1,5 +1,6 @@
 public enum Stage
 {
+    None,
     GameStart,
     Opening_Start,
     Opening_Picture1,

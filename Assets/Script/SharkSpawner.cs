@@ -6,27 +6,24 @@ using UnityEngine.UI;
 
 public class SharkSpawner : Actor
 {
-    Shark shark1;
-    Shark shark2;
-    Shark shark3;
+    public Shark shark1;
+    public Shark shark2;
+    public Shark shark3;
 
     Quaternion headRotation;
-    public Text rotationText;
-
-
+    
     void Start(){
         SummonShark(shark1);
     }
 
     void SummonShark(Shark shark){
-        EyeTracker.Instance.TryGetCenterEyeNodeStateRotation(out headRotation);
+        // EyeTracker.Instance.TryGetCenterEyeNodeStateRotation(out headRotation);
+        headRotation =Quaternion.Euler(0, 30, 0);
         Vector3 headRotation_euler = headRotation.eulerAngles;
         headRotation_euler.y = 0;
         Quaternion newRotation = Quaternion.Euler(headRotation_euler);
         Vector3 direction = newRotation * Vector3.back*10;
-        shark.SummonPosition.position = transform.position + direction;
-        shark.SummonPosition.rotation = newRotation * Quaternion.Euler(0, 90, 0);
-        Instantiate(shark, shark.SummonPosition.position ,shark.SummonPosition.rotation);
+        Instantiate(shark, transform.position + direction ,newRotation * Quaternion.Euler(0, 90, 0));
     }
 
     protected override void Acting(Stage newStage)

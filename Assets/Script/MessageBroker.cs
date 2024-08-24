@@ -6,6 +6,8 @@ public class MessageBroker : MonoBehaviour
     public static MessageBroker messageBroker;
     private Stage currentStage;
     public event Action<Stage> BrokerMessage;
+    public GameObject SummonPoint;
+
     void Awake()
     {
         // 싱글톤 패턴 구현

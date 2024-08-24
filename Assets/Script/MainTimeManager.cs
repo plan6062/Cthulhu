@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel;
+using Unity.Collections;
 using UnityEngine;
 
 public class MainTimeManager : MonoBehaviour
@@ -8,8 +10,9 @@ public class MainTimeManager : MonoBehaviour
 
     // 이벤트 선언
     public event Action<Stage> TimeManagerMessage;
-
     public Stage currentStage;
+
+    public Stage ChangeStage = Stage.None;
 
     void Awake()
     {
@@ -29,6 +32,13 @@ public class MainTimeManager : MonoBehaviour
         // 초기 스테이지 설정
         SetStage(initialStage);
     }
+
+    void Update() {
+        if(ChangeStage != currentStage && ChangeStage != Stage.None){
+            SetStage(ChangeStage);
+            currentStage = ChangeStage;
+        }    
+    }    
 
     public void SetStage(Stage newStage)
     {

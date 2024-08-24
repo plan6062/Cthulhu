@@ -8,7 +8,6 @@ using System.Collections;
 public class Shark : Actor
 {
     Quaternion headRotation;
-    public Transform shark;
     public LineRenderer lineRenderer;
     public int numPoints = 50;
     public float moveSpeed = 5f;
@@ -16,8 +15,9 @@ public class Shark : Actor
     // Fixed points and parameters
     public Vector3 P0;
     private Vector3 P3;
-    public Vector3 direction; // This should be a normalized vector
-    public float distanceM; // 이 값은 매번 랜덤 범위로 정해진다.
+    Quaternion dir;
+    Vector3 direction; // This should be a normalized vector
+    public float distanceM; // 이 값은 매번 
 
     private Vector3[] points;
     private int currentPointIndex = 0;
@@ -25,15 +25,36 @@ public class Shark : Actor
     void Start()
     {
         GenerateBezierCurve();
-        lineRenderer.positionCount = points.Length;
-        lineRenderer.SetPositions(points);
+        // lineRenderer.positionCount = points.Length;
+        // lineRenderer.SetPositions(points);
         StartCoroutine(MoveAlongCurve());
     }
 
+
+    void Step()
+    {
+        //  생성 : 상어가 스폰될 위치를 결정한다. 플레이어가 바라보는 벡터에서 y성분을 제거한 벡터의 원점 기준 반대 벡터의 방향으로
+        //  플레이어 위치에서 N만큼 이동 + y성분을 -2로 변경한 점에서 스폰된다.
+        //  곡선 : 생성점을 시작으로 하는 선분을 만들어야 한다. 선분의 끝 점은 일정 범위 내의 랜덤 각도 / 길이를 이용해 결정한다.
+        //  해당 점으로 이동 후, 45도 회전하며 이동 후, 또 직선 이동을 한다. 
+        //  속도의 경우, 
+        //  ㅅㅂ~ 그냥 윤재한테 부탁하자
+    }
     void GenerateBezierCurve()
     {
+        
+        // EyeTracker.Instance.TryGetCenterEyeNodeStateRotation(out dir);
+        // direction = dir.eulerAngles;
+        // direction = new Vector3(-direction.x, 0, -direction.z);
+        // P0 = direction.normalized*10;
+        // direction = Vector3.Cross(direction.normalized, Vector3.up).normalized;
         // Define P3
+        P0 = transform.position;
+        direction = transform.forward;
         Vector3 P3 = P0 + direction * distanceM;
+        Debug.Log(P0);
+        Debug.Log(P3);
+        Debug.Log(direction);
 
         // Define a vector perpendicular to the line P0P3
         Vector3 perpendicular = Vector3.Cross(direction, Vector3.up).normalized * (distanceM / 6);
@@ -89,14 +110,14 @@ public class Shark : Actor
             }
 
             Vector3 targetPosition = points[currentPointIndex];
-            while (Vector3.Distance(shark.position, targetPosition) > 0.1f)
+            while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
-                shark.position = Vector3.MoveTowards(shark.position, targetPosition, moveSpeed * Time.deltaTime);
-                Vector3 direction = targetPosition - shark.position;
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                Vector3 direction = targetPosition - transform.position;
                 if (direction != Vector3.zero)
                 {
                     Quaternion rotation = Quaternion.LookRotation(direction);
-                    shark.rotation = Quaternion.Slerp(shark.rotation, rotation, Time.deltaTime * moveSpeed);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * moveSpeed);
                 }
                 yield return null;
             }

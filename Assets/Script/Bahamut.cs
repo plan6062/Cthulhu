@@ -13,6 +13,7 @@ public class Bahamut : Actor
     bool isChasing = false;
     bool isDrown = false;
     public Transform player;
+    public GameObject transparentColliderPrefab;
     public float speed;
     float counter;
     float swimcounter;
@@ -22,7 +23,11 @@ public class Bahamut : Actor
     public float chaseSpeed = 5f;
     bool isPlayerfindbahamut = false;
     bool is10secFinished = false;
-
+    Quaternion headRotation;
+    float spawnDistance = 30f; 
+    [SerializeField]
+    float colliderRadius;
+    public RaftController raft;
     public Transform[] swimpoints = new Transform[4];
     public Transform poppoint;
     public bool isBahamutHit = false;  
@@ -36,6 +41,7 @@ public class Bahamut : Actor
             if(isChasing){
                 Vector3 direction = player.position - transform.position;
                 direction.Normalize();  
+                direction.y = 0;
                 transform.position += direction * speed * Time.deltaTime;
                 counter += Time.deltaTime;
                 if (counter > 3){
@@ -43,14 +49,21 @@ public class Bahamut : Actor
                     isChasing = false;
                     if(Checkdistance()){
                         // 바하무트 애니메이션 재생
-                        // 그냥 배만 기울이면 플레이어는 알아서 떨어진다. 배 기울이기 스크립트 추가하기.
+                        // 1안 - 사람이 보는 방향 벡터에서 N만큼 떨어진 곳에서 바하무트가 솟아 오른다.
+                        // 그와 동시에 해당 방향 반대 방향으로 배가 기울어진다. 배 기울어짐은 물리에 의존하지 않고 순전히 실제 수치를 조절한다.
+                        // 바하무트의 애니메이션 재생과 배 기울어짐의 시간 차이는 .. 테스트 해보면서 조절
+                        // 
+                        
                         StartCoroutine(Death_OceanDrown());
                         MainTimeManager.Instance.SetStage(Stage.Stage1_BahamutSwimAttack_Death);
                     } else {
                         StartCoroutine(Popout());
                     }
                 }
-            } else if(isDrown){
+            }
+        }
+        if(currentStage == Stage.Stage1_BahamutSwimAttack_Death){
+            if(isDrown){
                 // 바하무트를 플레이어 방향으로 이동
                 Vector3 directionToPlayer = (player.position - transform.position).normalized;
                 transform.position += directionToPlayer * chaseSpeed * Time.deltaTime;
@@ -66,8 +79,7 @@ public class Bahamut : Actor
                     Destroy(gameObject);
                 }
             }
-        }
-        
+        }        
         if(currentStage == Stage.Stage1_GetClosetoReef){
             // do nothing
         }
@@ -136,29 +148,60 @@ public class Bahamut : Actor
         isChasing = true;
     }
 
-    Quaternion headRotation;
-    float spawnDistance = 30f; 
     IEnumerator Death_OceanDrown()
     {   
-         // 플레이어가 바다에 빠지고 잠시 대기
+        EyeTracker.Instance.TryGetCenterEyeNodeStateRotation(out headRotation);
+        Vector3 BahamutDirection = headRotation * Vector3.forward;
+        BahamutDirection.y = 0;
+        BahamutDirection = BahamutDirection.normalized * 10.0f;
+        transform.position = player.position + BahamutDirection;
+        transform.LookAt(player.transform.position);// 이때 필요하다면 각도 조절
+        
+        // 애니메이션 재생 //
+        
+        yield return new WaitForSeconds(3); // 이 수치는 실제 플레이에서 테스트 후 조절
+
+        raft.AttackedbyBahamut(transform);
+
+        // 플레이어가 바다에 빠지고 잠시 대기
         yield return new WaitForSeconds(5);
 
-        // 플레이어가 바라보는 방향의 벡터 얻기
-        if (EyeTracker.Instance.TryGetCenterEyeNodeStateRotation(out headRotation))
+        Vector3 totalDirection = Vector3.zero;
+        for (int i = 0; i < 5; i++)
         {
-            // headRotation을 Euler 각도로 변환하여 방향 벡터 얻기
+            EyeTracker.Instance.TryGetCenterEyeNodeStateRotation(out headRotation);
             Vector3 forwardDirection = headRotation * Vector3.forward;
+            totalDirection += forwardDirection;
+            yield return new WaitForSeconds(0.2f);
+        }
 
-            // 바하무트를 플레이어로부터 spawnDistance만큼 떨어진 위치에 배치
-            Vector3 spawnPosition = player.position + forwardDirection * spawnDistance;
-            transform.position = spawnPosition;
+        Vector3 averageDirection = totalDirection / 5.0f;
+        Vector3 oppositeDirection = -averageDirection;
+        oppositeDirection.y = 0; // y 성분을 0으로 제거
+        Vector3 vectorA = oppositeDirection.normalized * 10.0f; // 길이를 10으로 만든다
 
-            // 바하무트의 로테이션을 플레이어를 향하도록 설정
-            Vector3 directionToPlayer = (player.position - spawnPosition).normalized;
-            transform.rotation = Quaternion.LookRotation(-directionToPlayer);
+        // 3. 플레이어에서부터 A 벡터만큼 떨어진 트랜스폼에서 소리를 재생한다. 이 트랜스폼에 투명한 콜라이더 B를 위치시킨다.
+        GameObject colliderObject = Instantiate(transparentColliderPrefab, player.position + vectorA, Quaternion.identity);
+        colliderObject.transform.localScale = new Vector3(colliderRadius, colliderRadius, colliderRadius);
 
-            // 바하무트 추적 시작
-            isDrown = true;
+        // 오디오 소스 설정 및 재생
+        AudioSource audioSource = colliderObject.AddComponent<AudioSource>();
+        audioSource.Play();
+
+        // 4. 이후 플레이어의 headRotation을 계속해서 파악하다가, 콜라이더와 충돌하면 바하무트 소환
+        while (true)
+        {
+            if(EyeTracker.Instance.CheckSightCollison(player.gameObject,"sightcollision"))
+            {
+                transform.position = player.position + vectorA;
+                Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                transform.rotation = Quaternion.LookRotation(-directionToPlayer);
+                isDrown = true;
+                break;
+            } else {
+                yield return null;
+            }
+            
         }
     }
 
@@ -166,6 +209,7 @@ public class Bahamut : Actor
     protected override void Acting(Stage newStage)
     {
         currentStage = newStage;
+        counter = 0;
         switch (newStage)
         {
             case Stage.Stage1_BahamutAppear:
@@ -181,10 +225,10 @@ public class Bahamut : Actor
             case Stage.Stage1_StopBoat:
                 break;
             case Stage.Stage1_LookThroughHole:
-                counter = 0;
                 break;
             case Stage.Stage1_SwimStop:
-                counter = 0;
+                break;
+            case Stage.Stage1_FindBahamut:
                 break;
             default:            
                 break;
