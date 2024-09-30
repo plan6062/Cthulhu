@@ -17,7 +17,7 @@ public class StageSpawner_1 : MessageBroker
     //[SerializeField] private Actor zone2;
     //[SerializeField] private Actor zone3;
     //[SerializeField] private Actor zone4;
-    [SerializeField] private Actor sharkspawner1;
+    [SerializeField] private Actor sharkspawner;
     [SerializeField] private Actor bahamut;
     [SerializeField] private Actor reef;
     [SerializeField] private Actor gun;
@@ -28,7 +28,7 @@ public class StageSpawner_1 : MessageBroker
     void Summon(Actor actor){
         Debug.Log(actor.GetType().Name+"_sp");
         Transform summonPosition = SummonPoint.transform.Find(actor.GetType().Name+"_sp");
-        Debug.Log(summonPosition);
+        Debug.Log(summonPosition.position);
         Instantiate(actor, summonPosition.position, summonPosition.rotation);
     }
     protected override void ChangeActorState(Stage newStage)
@@ -38,24 +38,19 @@ public class StageSpawner_1 : MessageBroker
             case Stage.GameStart:
                 break;
             case Stage.Opening_Start:
-                Summon(reef);
-                Summon(thunder);
+                // Summon(reef);
+                
                 // 생성은 여기서 처리하지만, 파괴는 각 인스턴스가 스스로를 파괴한다. 
                 // 보트는 유일하게 처음부터 있어도 되지 않나?
                 // 
                 break;
-            case Stage.Opening_Picture1:
-                //Instantiate(picture1, picture1.SummonPosition.transform   .position ,picture1.SummonPosition.transform   .rotation);
-                break;
-            case Stage.Opening_Picture2:
-                //Instantiate(picture2, picture2.SummonPosition.transform   .position ,picture2.SummonPosition.transform   .rotation);
-                break;
             case Stage.Opening_Corpse1:
+                // Summon(transmitter);
+                Summon(picture1);
                 Summon(corpse_dead);
                 break;
-            case Stage.Opening_Picture3:
-                break;
             case Stage.Opening_Corpse2:
+                Summon(picture2);
                 Summon(corpse_drown);
                 break;
             case Stage.Opening_FindBattery:
@@ -65,7 +60,7 @@ public class StageSpawner_1 : MessageBroker
                 Summon(zone1);
                 break;
             case Stage.Stage1_EnterZone1:
-                Summon(sharkspawner1);
+                Summon(sharkspawner);
                 break;
             case Stage.Stage1_EnterZone2:
                 break;
@@ -75,6 +70,7 @@ public class StageSpawner_1 : MessageBroker
                 break;
             case Stage.Stage1_BahamutAppear:
                 Summon(bahamut);
+                Summon(reef);
                 break;
             case Stage.Stage1_BahamutSwimAttack:
                 break;

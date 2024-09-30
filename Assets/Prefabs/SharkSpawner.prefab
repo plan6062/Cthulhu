@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ef2b2d7f55042ae9c3c7e6b80d6cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shark1: {fileID: 6281061742231110629, guid: 3a768604e988c4cff9b1bce021a4eced, type: 3}
-  shark2: {fileID: 0}
-  shark3: {fileID: 0}
+  shark1: {fileID: 4550370360981525711, guid: f08df0bcfa44c4106bb5fe32ad4a4c04, type: 3}
+  shark2: {fileID: 4550370360981525711, guid: d7dd792c5131a42b4958d584c9e679ba, type: 3}
+  shark3: {fileID: 4550370360981525711, guid: 34454dadc3e8d442b88524fcbda7a05e, type: 3}

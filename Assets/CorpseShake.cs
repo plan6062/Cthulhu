@@ -1,61 +1,55 @@
 using UnityEngine;
-using VHierarchy.Libs;
-
+using System.Collections;
+using Crest;
 public class CorpseShakeAndSink : Actor
 {
-    public float shakeAmount = 0.1f;
-    public float shakeSpeed = 10f;
-    public float sinkSpeed = 2f;
-    public float detectionRange = 15f;
-
     private GameObject player;
-    private Vector3 initialPosition;
-    private bool isSinking = false;
-
+    bool isSink = false;
+    
     void Start()
     {
-        initialPosition = transform.position;
+        player = GameObject.FindGameObjectWithTag("Raft");
+        if(player == null){
+            Debug.Log("no player");
+        }
+
+        // StartCoroutine(test());
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (player == null)
+        if(MainTimeManager.Instance.GetCurrentStage() == Stage.Opening_Corpse2)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-            if (player == null) return;
+            float distance = Vector3.Distance(player.transform.position, transform.position);
+            if(distance < 7){
+                MainTimeManager.Instance.SetStage(Stage.Opening_FindBattery,  this.GetType().Name);
+                StartCoroutine(Sink());
+            }
         }
-
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-
-        if (!isSinking && distance < detectionRange)
+        if(isSink)
         {
-            isSinking = true;
+            Vector3 currentPosition = transform.position;
+            currentPosition.y -= 0.1f * Time.deltaTime;
+            transform.position = currentPosition;
         }
-
-        Vector3 shakeOffset = new Vector3(
-            Mathf.Sin(Time.time * shakeSpeed) * shakeAmount,
-            Mathf.Sin(Time.time * shakeSpeed * 0.9f) * shakeAmount,
-            Mathf.Sin(Time.time * shakeSpeed * 1.1f) * shakeAmount
-        );
-
-        Vector3 newPosition = initialPosition + shakeOffset;
-
-        if (isSinking)
+        if(transform.position.y < -5)
         {
-            newPosition.y -= sinkSpeed * Time.deltaTime;
-            initialPosition.y -= sinkSpeed * Time.deltaTime;
-        }
-
-        transform.position = newPosition;
-
-        // 다음 스테이지로 넘어가기 위한 조건이 만족되었을 때,
-        if(transform.position.y < -3)
-        {
-            // MainTimaManager 인스턴스의 SetStage 메서드로 스테이지를 변경한다.
-            MainTimeManager.Instance.SetStage(Stage.Opening_FindBattery);
-
-            // 이 게임오브젝트가 나중에 더 쓰일 일이 없다면 스스로를 파괴한다.
             Destroy(gameObject);
         }
+    }
+
+    // IEnumerator test(){
+    //     while(true){
+    //         yield return new WaitForSeconds(2);
+    //         float distance = Vector3.Distance(player.transform.position, transform.position);
+    //         Debug.Log(distance);
+    //     }
+    // }
+    IEnumerator Sink()
+    {   
+        yield return new WaitForSeconds(5);
+        isSink = true;
+        GetComponent<SimpleFloatingObject>().enabled = false;
     }
 }

@@ -17,13 +17,11 @@ public class SharkSpawner : Actor
     }
 
     void SummonShark(Shark shark){
-        // EyeTracker.Instance.TryGetCenterEyeNodeStateRotation(out headRotation);
-        headRotation =Quaternion.Euler(0, 30, 0);
-        Vector3 headRotation_euler = headRotation.eulerAngles;
-        headRotation_euler.y = 0;
-        Quaternion newRotation = Quaternion.Euler(headRotation_euler);
-        Vector3 direction = newRotation * Vector3.back*10;
-        Instantiate(shark, transform.position + direction ,newRotation * Quaternion.Euler(0, 90, 0));
+        EyeTracker.Instance.TryGetCenterEyeNodeStateRotation(out headRotation);
+        Vector3 Backdirection = headRotation * Vector3.forward;
+        Vector3 targetPosition = Camera.main.transform.position + Backdirection * 5f;
+        targetPosition.y = 2f;
+        Instantiate(shark,  targetPosition, headRotation);
     }
 
     protected override void Acting(Stage newStage)

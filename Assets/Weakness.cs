@@ -3,7 +3,7 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
     public SharkMovement sharkMovement;
-    public _Bahamut bahamut;
+    public Bahamut_old bahamut;
     
     void OnTriggerEnter(Collider other)
     {

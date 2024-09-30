@@ -124,7 +124,7 @@ PrefabInstance:
       addedObject: {fileID: 6812365037224800752}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6b1cdf1ecb8437142bfbaa73ca9edf6f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3424243973412731161}
+      addedObject: {fileID: 5414964915489030649}
   m_SourcePrefab: {fileID: 100100000, guid: 6b1cdf1ecb8437142bfbaa73ca9edf6f, type: 3}
 --- !u!4 &2580398196713039379 stripped
 Transform:
@@ -348,8 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5fc1acc833a5d4582f7b97b5d6848b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SummonPosition: {fileID: 2580398196713039379}
---- !u!114 &3424243973412731161
+--- !u!114 &5414964915489030649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -358,40 +357,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2919663867880799401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebb499a376b0c094f92b8f70c0966934, type: 3}
+  m_Script: {fileID: 11500000, guid: 131fd8c19a56d5a4ba96807822de1f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _version: 0
-  _centerOfMass: {x: 0, y: 0, z: 0}
-  _forcePoints:
-  - _weight: 1
-    _offsetPosition: {x: 3, y: -0.5, z: -3}
-  - _weight: 1
-    _offsetPosition: {x: 3, y: -0.5, z: 3}
-  - _weight: 1
-    _offsetPosition: {x: -3, y: -0.5, z: -3}
-  - _weight: 1
-    _offsetPosition: {x: -3, y: -0.5, z: 3}
-  - _weight: 1
-    _offsetPosition: {x: -3, y: -0.5, z: 0}
-  - _weight: 1
-    _offsetPosition: {x: 3, y: -0.5, z: 0}
-  - _weight: 1
-    _offsetPosition: {x: 0, y: -0.5, z: 3}
-  - _weight: 1
-    _offsetPosition: {x: 0, y: -0.5, z: -3}
-  _forceHeightOffset: 0
-  _forceMultiplier: 1
-  _minSpatialLength: 1000
-  _turningHeel: 0.35
+  _raiseObject: 2
+  _buoyancyCoeff: 1.5
+  _boyancyTorque: 0
+  _accelerateDownhill: 0
   _maximumBuoyancyForce: Infinity
+  _objectWidth: 1
+  _forceHeightOffset: -0.3
   _dragInWaterUp: 3
-  _dragInWaterRight: 4
-  _dragInWaterForward: 0.5
-  _enginePower: 0
-  _turnPower: 0
-  _playerControlled: 0
-  _engineBias: 1
-  _turnBias: 1
-  _debug:
-    _drawQueries: 0
+  _dragInWaterRight: 2
+  _dragInWaterForward: 1
+  _dragInWaterRotational: 10
+  _debugDraw: 0

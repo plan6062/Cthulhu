@@ -11,6 +11,8 @@ TagManager:
   - ConnectionZone
   - Reef
   - Raft
+  - Sightcollision
+  - hole
   layers:
   - Default
   - TransparentFX

@@ -30,22 +30,23 @@ public class MainTimeManager : MonoBehaviour
     void Start()
     {
         // 초기 스테이지 설정
-        SetStage(initialStage);
+        SetStage(initialStage,  this.GetType().Name);
     }
 
     void Update() {
         if(ChangeStage != currentStage && ChangeStage != Stage.None){
-            SetStage(ChangeStage);
+            SetStage(ChangeStage,  this.GetType().Name);
             currentStage = ChangeStage;
+            ChangeStage = Stage.None;
         }    
     }    
 
-    public void SetStage(Stage newStage)
+    public void SetStage(Stage newStage, string actor)
     {
         if (currentStage != newStage)
         {
             currentStage = newStage;
-            Debug.Log("Stage changed to: " + currentStage);
+            Debug.Log(actor + "changed to: " + currentStage);
             TimeManagerMessage?.Invoke(currentStage);
         }
     }

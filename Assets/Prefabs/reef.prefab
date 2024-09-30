@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8360147694906780446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9108864958300761422}
+  - component: {fileID: 5232323065242056352}
+  m_Layer: 0
+  m_Name: hole
+  m_TagString: hole
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9108864958300761422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360147694906780446}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 393508631859870625}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5232323065242056352
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8360147694906780446}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0.04, z: 0.04}
 --- !u!1001 &215257410576833610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,15 +63,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b253fee615576456697d349c5b3338e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b253fee615576456697d349c5b3338e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b253fee615576456697d349c5b3338e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 107.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b253fee615576456697d349c5b3338e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -50,7 +103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b253fee615576456697d349c5b3338e5, type: 3}
       propertyPath: m_Name
-      value: rock 1
+      value: reef
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b253fee615576456697d349c5b3338e5, type: 3}
       propertyPath: m_TagString
@@ -58,7 +111,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: b253fee615576456697d349c5b3338e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9108864958300761422}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b253fee615576456697d349c5b3338e5, type: 3}
       insertIndex: -1
@@ -86,4 +142,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511ad317d13047940bcc6cf8968638d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SummonPosition: {fileID: 393508631859870625}

@@ -1949,6 +1949,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5a2c134563440cc4b95de6723dda5af6, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5a2c134563440cc4b95de6723dda5af6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 03236888db13a35408604291c1fbaf5b, type: 2}
@@ -2202,7 +2206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6249db58cc4aa7d49a68a0caaed2d84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SummonPosition: {fileID: 0}
   currentState: 0
   stateImages:
   - state: 0

@@ -28,10 +28,15 @@ public class EyeTracker : MonoBehaviour {
             if(nodeState.nodeType == XRNode.CenterEye)
             {
                 if (nodeState.TryGetRotation(out rotation))
+                {
+                    // x의 부호를 반전
+                    rotation.x = -rotation.x;
+                    rotation.z = -rotation.z;
                     return true;
+                }
             }
         }
-        // This is the fail case, where there was no center eye was available.
+        // 이 경우에는 Center Eye 노드가 사용 불가능한 경우에 대한 처리입니다.
         rotation = Quaternion.identity;
         return false;
     }
@@ -39,7 +44,7 @@ public class EyeTracker : MonoBehaviour {
     public bool CheckSightCollison(GameObject caster, String targetTag)
     {
         TryGetCenterEyeNodeStateRotation(out playerRotation);
-        Ray ray = new Ray(caster.transform.position, playerRotation * Vector3.forward);
+        Ray ray = new Ray(caster.transform.position, playerRotation * Vector3.forward*-1);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100) && hit.transform.CompareTag(targetTag))

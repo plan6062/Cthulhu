@@ -82,6 +82,13 @@ public class LightningController : Actor
             }
         }
     }
+    public IEnumerator LightningImmediate(int duration)
+    {
+        directionalLight.intensity = lightIntensity;
+        StartCoroutine(PlayThunderSound());
+        yield return new WaitForSeconds(duration);
+        directionalLight.intensity = 0;
+    }
 
     private IEnumerator PlayThunderSound()
     {

@@ -3,10 +3,7 @@ public enum Stage
     None,
     GameStart,
     Opening_Start,
-    Opening_Picture1,
-    Opening_Picture2,
     Opening_Corpse1,
-    Opening_Picture3,
     Opening_Corpse2,
     Opening_FindBattery,
     Stage1_ConnectSatellite,
@@ -23,6 +20,18 @@ public enum Stage
     Stage1_StopBoat,
     Stage1_LookThroughHole,
     Stage1_SwimStop,
-    Stage1_FindBahamut
-    // 플레이어의 시야 벡터가 구멍을 향한 순간
+    Stage1_FindBahamut,
+    Stage1_EndBahamut, // 바하무트 들어감. 뗏목을 타고 암초 밖으로 나가면 다음으로 진행
+    Stage1_TryConnectAgain,
+    Stage1_TransmitSOS,
+    Stage2_StormStart,
+    Stage2_Picture,
+    Stage2_LightDarken,
+    Stage2_DagonFind,
+    Stage2_DagonOceanClose1,
+    Stage2_DagonOceanClose2,
+    Stage2_DagonOnBoat,
+    Stage2_DagonGetClose, // 작살 맞는건 따로 스테이지로 빼지 않고 다곤에서 처리
+    Stage2_DagonDeathScene,
+    Stage2_DagonEnd, // 작살 3번 맞으면 다곤 사망
 }
