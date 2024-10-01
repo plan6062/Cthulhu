@@ -14,31 +14,44 @@ public class Bahamut : Actor
     bool isDrown = false;
     Transform player;
     Transform raft;
+    Transform reef;
     public GameObject transparentColliderPrefab;
     public float chasingSpeed;
+    GameObject raftfloor;
     float counter;
     float swimcounter;
     int swimcount = 0;
     float checkdistance = 20f;
-    float blackoutDistance = 3f;
+    float blackoutDistance = 6f;
     public float speed_underwater;
     bool isPlayerfindbahamut = false;
     bool is10secFinished = false;
     Quaternion headRotation;
-    public AudioSource audioSource;
+    public AudioSource audioSource_growl;
+    public AudioSource audioSource_coming;
     
-    public Transform[] swimpoints = new Transform[4];
-    public Transform poppoint;
+    Transform[] swimpoints = new Transform[4];
+    Transform poppoint;
     public bool isBahamutHit = false;  
     public Animator anim;
+    GameObject fadeout;
     void Start(){
+        poppoint = GameObject.FindGameObjectWithTag("Poppoint").transform; 
+        fadeout = GameObject.FindGameObjectWithTag("MainCamera");
         raft = GameObject.FindGameObjectWithTag("Raft").transform;
+        reef = GameObject.FindGameObjectWithTag("Rock").transform;
+        raftfloor = GameObject.FindGameObjectWithTag("Followobject");
+        for (int i = 0; i < 4; i++)
+            {
+                swimpoints[i] = reef.transform.GetChild(i);
+            }
         player = GameObject.FindGameObjectWithTag("Player").transform;
         anim.SetBool("meetfirst",true);
         StartCoroutine(WaitfoSec(5));        
     }
     IEnumerator WaitfoSec(int n){
         yield return new WaitForSeconds(n);
+        audioSource_coming.Play();
         anim.SetBool("meetfirst",false);
         MainTimeManager.Instance.SetStage(Stage.Stage1_BahamutSwimAttack,this.GetType().Name);
         // 추격 브금 시작
@@ -76,8 +89,7 @@ public class Bahamut : Actor
                 // 플레이어와의 거리가 blackoutDistance 이하가 되면 암전 발생
                 if (distanceToPlayer <= blackoutDistance)
                 {
-                    // 암전 로직 (예: 화면을 검게 처리하는 코드)
-                    // 게임 오버
+                    fadeout.GetComponent<Fadeout>().StartBlackout();
                     Destroy(gameObject);
                 }
             }
@@ -90,29 +102,40 @@ public class Bahamut : Actor
             swimcounter += Time.deltaTime;
             if(counter > 20){
                 counter = 0;
-                MainTimeManager.Instance.SetStage(Stage.Stage1_SwimStop,  this.GetType().Name);
-            } else if(swimcounter > 5) {
+                MainTimeManager.Instance.SetStage(Stage.Stage1_SwimStop,this.GetType().Name);
+            } else if(swimcounter > 4) {
                 swimcounter = 0;            
                 transform.position = swimpoints[swimcount].position;
+                transform.rotation = swimpoints[swimcount].rotation;
                 swimcount += 1;
-                anim.SetBool("diving2",true);
+                anim.Play("diving2",0, 0f);
+                
+                if(swimcount==2){
+                    audioSource_coming.volume = 0.5f;
+                } else if (swimcount==3){
+                    audioSource_coming.volume = 0.1f;
+                }
+                audioSource_coming.Play();
             }
         }
         if(currentStage == Stage.Stage1_SwimStop){
             
             counter += Time.deltaTime;
-            if(counter > 6){
+            if(counter > 1){
                 counter = 5; // 5초가 지난 후부터, 1초에 한번 확인함.
-                if(EyeTracker.Instance.CheckSightCollison(player.gameObject, "hole")){
+                // if(EyeTracker.Instance.CheckSightCollison(player.gameObject, "hole"))
+                if(true)
+                {
                     transform.position = poppoint.position;
                     transform.rotation = poppoint.rotation;
                     MainTimeManager.Instance.SetStage(Stage.Stage1_FindBahamut,  this.GetType().Name);
+                    anim.Play("meeteye",0, 0f);
                 }
             }
         }
         if(currentStage == Stage.Stage1_FindBahamut){
             if (!isPlayerfindbahamut){
-                if(EyeTracker.Instance.CheckSightCollison(player.gameObject, "bahamut")){
+                if(EyeTracker.Instance.CheckSightCollison(player.gameObject, "Bahamut")){
                     isPlayerfindbahamut = true;
                 }
             } else {
@@ -123,10 +146,17 @@ public class Bahamut : Actor
                     anim.SetBool("hiteye", true);
                 } else {
                     anim.SetBool("dead2", true);
+                    StartCoroutine(WaitforDie(1));
                 }
                 MainTimeManager.Instance.SetStage(Stage.Stage1_EndBahamut,  this.GetType().Name);
             }
         }
+    }
+
+    IEnumerator WaitforDie(int n){
+        yield return new WaitForSeconds(n);
+        audioSource_growl.Play();
+        fadeout.GetComponent<Fadeout>().StartBlackout();
     }
     
     IEnumerator WaitforOpenEye(int n){
@@ -145,6 +175,7 @@ public class Bahamut : Actor
     IEnumerator Popout()
     {   
         anim.Play("diving2",0, 0f);
+        audioSource_coming.Play();
         yield return new WaitForSeconds(2.5f);
         chasingSpeed *= 1.2f;
         isChasing = true;
@@ -163,8 +194,9 @@ public class Bahamut : Actor
         
         yield return new WaitForSeconds(1.5f); // 이 수치는 실제 플레이에서 테스트 후 조절
 
-        raft.GetComponent<RaftController>().AttackedbyBahamut(transform);
-
+        raft.GetComponent<RaftController>().AttackedbyBahamut(transform); // 뗏목 뒤집기 (렌더러)
+        raftfloor.GetComponent<FollowObject>().AttackedbyBahamut(transform.position);
+        transform.position = raft.position + new Vector3(0, -500,0);
         // 플레이어가 바다에 빠지고 잠시 대기
         yield return new WaitForSeconds(5);
 
@@ -185,20 +217,17 @@ public class Bahamut : Actor
         // 3. 플레이어에서부터 A 벡터만큼 떨어진 트랜스폼에서 소리를 재생한다. 이 트랜스폼에 투명한 콜라이더 B를 위치시킨다.
         GameObject colliderObject = Instantiate(transparentColliderPrefab, player.position + vectorA, Quaternion.identity);
     
-        // 오디오 소스 설정 및 재생
-        audioSource.Play();
-
         // 4. 이후 플레이어의 headRotation을 계속해서 파악하다가, 콜라이더와 충돌하면 바하무트 소환
         while (true)
         {
             if(EyeTracker.Instance.CheckSightCollison(player.gameObject,"Sightcollision"))
             {
-                transform.position = player.position + vectorA*20f;
+                transform.position = player.position + vectorA*17f;
                 Vector3 directionToPlayer = (player.position - transform.position).normalized;
                 transform.rotation = Quaternion.LookRotation(directionToPlayer);
                 
                 anim.Play("dead1",0, 0f);
-                transform.position = transform.position + new Vector3(0,-30,0);
+                audioSource_growl.Play();
                 isDrown = true;
                 break;
             } else {
@@ -223,15 +252,15 @@ public class Bahamut : Actor
             case Stage.Stage1_BahamutSwimAttack_Death:
                 break;
             case Stage.Stage1_GetClosetoReef:
-                anim.speed = 1f;
-                break;
-            case Stage.Stage1_StopBoat:
+                
                 break;
             case Stage.Stage1_LookThroughHole:
                 break;
             case Stage.Stage1_SwimStop:
+                anim.speed = 1f;
                 break;
             case Stage.Stage1_FindBahamut:
+                anim.speed = 2.5f;
                 break;
             default:  
                 Destroy(gameObject);

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class LightningController : Actor
 {
+    Stage currentStage;
     public Light directionalLight;
     public float lightningInterval = 5f;
     public float flashDuration = 0.2f;
@@ -25,6 +26,7 @@ public class LightningController : Actor
         SetupLight();
         SetupAudio();
         StartCoroutine(LightningFlash());
+        StartCoroutine(NextStage()); // 나중에 수정하기.
     }
 
     private void SetupLight()
@@ -109,6 +111,22 @@ public class LightningController : Actor
         if (directionalLight != null)
         {
             directionalLight.intensity = originalIntensity;
+        }
+    }
+
+    IEnumerator NextStage(){
+        yield return new WaitForSeconds(15);
+        MainTimeManager.Instance.SetStage(Stage.Stage2_DagonFind, this.GetType().Name);
+    }
+    protected override void Acting(Stage newStage)
+    {
+        currentStage = newStage;
+        switch (newStage) 
+        {
+            case Stage.Stage2_StormStart:
+                break;
+            default:  
+                break;
         }
     }
 }

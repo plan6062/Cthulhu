@@ -13,6 +13,13 @@ TagManager:
   - Raft
   - Sightcollision
   - hole
+  - Rock
+  - Followobject
+  - Stuff
+  - Poppoint
+  - Bahamut
+  - lightning
+  - Sightcollision2
   layers:
   - Default
   - TransparentFX

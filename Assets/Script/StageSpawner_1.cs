@@ -23,6 +23,7 @@ public class StageSpawner_1 : MessageBroker
     [SerializeField] private Actor gun;
     [SerializeField] private Actor bullet;
     [SerializeField] private Actor thunder; //추가
+    [SerializeField] private Actor dagon; //추가
 
 
     void Summon(Actor actor){
@@ -69,16 +70,14 @@ public class StageSpawner_1 : MessageBroker
             case Stage.Stage1_SharkDissapear:
                 break;
             case Stage.Stage1_BahamutAppear:
-                Summon(bahamut);
                 Summon(reef);
+                Summon(bahamut);                
                 break;
-            case Stage.Stage1_BahamutSwimAttack:
+            case Stage.Stage2_StormStart:
+                Summon(thunder);
                 break;
-            case Stage.Stage1_BahamutSwimAttack_Death:
-                break;
-            case Stage.Stage1_GetClosetoReef:
-                break;
-            case Stage.Stage1_LookThroughHole:
+            case Stage.Stage2_DagonFind:
+                Summon(dagon);
                 break;
             default:
                 Debug.LogWarning("Incorrect Stage");

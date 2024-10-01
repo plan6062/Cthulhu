@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Crest;
+using UnityEngine.InputSystem;
 public class RaftController : MonoBehaviour
 {
     // public Transform frontCollider;
@@ -9,6 +10,7 @@ public class RaftController : MonoBehaviour
     // public Transform rightCollider;
     public Transform Collider;
     public float moveSpeed = 5f;
+    public GameObject player;
 
     private Rigidbody raftRigidbody;
     private PropellerRotation propellerRotation;
@@ -16,42 +18,44 @@ public class RaftController : MonoBehaviour
     private bool isBoatDead = false;
     private Transform bahamutT;
     private float currentRotation = 0f;
-    public float rotationSpeed = 90f; // 회전 속도
+    public float rotationSpeed = 30f; // 회전 속도
     Vector3 fixedposition;
-
+    bool done =false;
+    float counter =0;
+    Vector3 downward;
     void Start()
     {
+        downward = new Vector3(0,-24f,0); 
         raftRigidbody = GetComponent<Rigidbody>();
         propellerRotation = GetComponentInChildren<PropellerRotation>();
     }
 
     void Update()
     {
-        if(!isBoatDead){
-            if (isAttackedbyBahamut){
-                isBoatDead = true;
-                GetComponent<BoatProbes>().enabled = false;
-                fixedposition = transform.position;
-            }
-            else if (propellerRotation.isRotating)
-            {
+        if(!done){
+            if (propellerRotation.isRotating && !isBoatDead) {
                 MoveRaftIfColliding(Collider, propellerRotation.direction);
             }
-        }
-        if(isBoatDead)
-        {
-            transform.position = fixedposition;
-            float rotationAmount = rotationSpeed * Time.deltaTime;
-            transform.RotateAround(bahamutT.position, bahamutT.right, rotationAmount);
-            currentRotation += rotationAmount;
+            
+            if(isBoatDead)
+            { 
+                // transform.position = fixedposition;
+                // float rotationAmount = rotationSpeed * Time.deltaTime;
+                // transform.RotateAround(bahamutT.position, bahamutT.right, rotationAmount);
+                // currentRotation += rotationAmount;
 
-            // 180도 회전 후 정지
-            if (currentRotation >= 180f)
-            {
-                rotationSpeed = 0f;
-                currentRotation = 0f; // 회전 각도 초기화
+                // // 180도 회전 후 정지
+                // if (currentRotation >= 20f)
+                // {
+                //     done = true;
+                // }
+                counter += Time.deltaTime;
+                if(counter < 2){
+                    transform.Translate(downward * Time.deltaTime , Space.World);
+                }
             }
         }
+        
     }
 
     void MoveRaftIfColliding(Transform colliderTransform, Vector3 direction)
@@ -71,7 +75,11 @@ public class RaftController : MonoBehaviour
     }
 
     public void AttackedbyBahamut(Transform bahamutTransform) {
+        // player.transform.parent = null;
+        GetComponent<BoatProbes>().enabled = false;
+        fixedposition = transform.position;
+        raftRigidbody.isKinematic = true;
         bahamutT = bahamutTransform;
-        isAttackedbyBahamut = true;
+        isBoatDead = true;
     }
 }

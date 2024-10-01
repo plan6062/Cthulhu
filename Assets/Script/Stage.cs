@@ -17,7 +17,6 @@ public enum Stage
 
     Stage1_GetClosetoReef,
     // 플레이어와 암초의 거리가 n 이하로 되었을 경우
-    Stage1_StopBoat,
     Stage1_LookThroughHole,
     Stage1_SwimStop,
     Stage1_FindBahamut,

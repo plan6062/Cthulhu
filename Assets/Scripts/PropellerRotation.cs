@@ -56,6 +56,7 @@ public class PropellerRotation : MonoBehaviour
 
     void Update()
     {
+        
         Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
         Vector3 currentPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
@@ -80,7 +81,9 @@ public class PropellerRotation : MonoBehaviour
         {
             DecreaseHeat();
         }
-
+        if(MainTimeManager.Instance.GetCurrentStage() == Stage.Stage1_SwimStop || MainTimeManager.Instance.GetCurrentStage() == Stage.Stage1_FindBahamut ){
+            heatGauge = 100f;
+        }
         CheckOverheat();
     }
 

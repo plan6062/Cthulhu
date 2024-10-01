@@ -44,7 +44,7 @@ public class EyeTracker : MonoBehaviour {
     public bool CheckSightCollison(GameObject caster, String targetTag)
     {
         TryGetCenterEyeNodeStateRotation(out playerRotation);
-        Ray ray = new Ray(caster.transform.position, playerRotation * Vector3.forward*-1);
+        Ray ray = new Ray(caster.transform.position, playerRotation * Vector3.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100) && hit.transform.CompareTag(targetTag))
