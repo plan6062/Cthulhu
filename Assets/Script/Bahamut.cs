@@ -29,11 +29,12 @@ public class Bahamut : Actor
     Quaternion headRotation;
     public AudioSource audioSource_growl;
     public AudioSource audioSource_coming;
-    
+    public AudioSource audioSource_underwater;    
     Transform[] swimpoints = new Transform[4];
     Transform poppoint;
     public bool isBahamutHit = false;  
     public Animator anim;
+    bool check = false;
     GameObject fadeout;
     void Start(){
         poppoint = GameObject.FindGameObjectWithTag("Poppoint").transform; 
@@ -111,9 +112,9 @@ public class Bahamut : Actor
                 anim.Play("diving2",0, 0f);
                 
                 if(swimcount==2){
-                    audioSource_coming.volume = 0.5f;
+                    audioSource_coming.volume = 0.7f;
                 } else if (swimcount==3){
-                    audioSource_coming.volume = 0.1f;
+                    audioSource_coming.volume = 0.4f;
                 }
                 audioSource_coming.Play();
             }
@@ -130,33 +131,43 @@ public class Bahamut : Actor
                     transform.rotation = poppoint.rotation;
                     MainTimeManager.Instance.SetStage(Stage.Stage1_FindBahamut,  this.GetType().Name);
                     anim.Play("meeteye",0, 0f);
+                    counter = 0;
                 }
             }
         }
         if(currentStage == Stage.Stage1_FindBahamut){
-            if (!isPlayerfindbahamut){
-                if(EyeTracker.Instance.CheckSightCollison(player.gameObject, "Bahamut")){
-                    isPlayerfindbahamut = true;
-                }
-            } else {
-                StartCoroutine(WaitforOpenEye(10));
+            
+            // if(!check){
+            //     StartCoroutine(WaitforDie(1));
+            //     check = true;
+            // }
+            counter += Time.deltaTime;
+            if(counter > 3){
+                is10secFinished = true;
             }
-            if (is10secFinished){
+
+            // if (!isPlayerfindbahamut){
+            //     if(EyeTracker.Instance.CheckSightCollison(player.gameObject, "Bahamut")){
+            //         isPlayerfindbahamut = true;
+            //     }
+            // } 
+            if (is10secFinished && !done){
+                done = true;
                 if(isBahamutHit){
-                    anim.SetBool("hiteye", true);
+                    anim.Play("hiteye");
                 } else {
-                    anim.SetBool("dead2", true);
-                    StartCoroutine(WaitforDie(1));
+                    anim.Play("dead2");
+                    StartCoroutine(WaitforDie(1.35f));
                 }
-                MainTimeManager.Instance.SetStage(Stage.Stage1_EndBahamut,  this.GetType().Name);
             }
         }
     }
-
-    IEnumerator WaitforDie(int n){
-        yield return new WaitForSeconds(n);
+    bool done = false;
+    IEnumerator WaitforDie(float n){
         audioSource_growl.Play();
+        yield return new WaitForSeconds(n);
         fadeout.GetComponent<Fadeout>().StartBlackout();
+        MainTimeManager.Instance.SetStage(Stage.Stage1_EndBahamut,  this.GetType().Name);
     }
     
     IEnumerator WaitforOpenEye(int n){
@@ -227,7 +238,7 @@ public class Bahamut : Actor
                 transform.rotation = Quaternion.LookRotation(directionToPlayer);
                 
                 anim.Play("dead1",0, 0f);
-                audioSource_growl.Play();
+                audioSource_underwater.Play();
                 isDrown = true;
                 break;
             } else {
@@ -263,7 +274,7 @@ public class Bahamut : Actor
                 anim.speed = 2.5f;
                 break;
             default:  
-                Destroy(gameObject);
+                
                 break;
         }
     }

@@ -82,7 +82,8 @@ public class PropellerRotation : MonoBehaviour
             DecreaseHeat();
         }
         if(MainTimeManager.Instance.GetCurrentStage() == Stage.Stage1_SwimStop || MainTimeManager.Instance.GetCurrentStage() == Stage.Stage1_FindBahamut ){
-            heatGauge = 100f;
+            audioSource.volume = 0;
+        
         }
         CheckOverheat();
     }
