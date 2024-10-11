@@ -12,6 +12,8 @@ Library: /Users/hwangjaehyeon/Cthulhu/Temp/BurstOutput/tempburstlibs/arm64-v8a/l
 --assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=AssistantCoreSDKRuntime;
+--assembly-defines=Boxophobic.AtmosphericHeightFog.Runtime;
+--assembly-defines=Boxophobic.Utils.Scripts;
 --assembly-defines=Crest;
 --assembly-defines=Crest.Examples;
 --assembly-defines=DOTween;
@@ -32,7 +34,6 @@ Library: /Users/hwangjaehyeon/Cthulhu/Temp/BurstOutput/tempburstlibs/arm64-v8a/l
 --assembly-defines=Meta.WitAi.Lib;
 --assembly-defines=Meta.WitAi.TTS;
 --assembly-defines=Meta.XR.BuildingBlocks;
---assembly-defines=MiniProfiler;
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=Oculus.AudioManager;
@@ -90,6 +91,8 @@ Library: /Users/hwangjaehyeon/Cthulhu/Temp/BurstOutput/tempburstlibs/arm64-v8a/l
 --assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=AssistantCoreSDKRuntime;
+--assembly-defines=Boxophobic.AtmosphericHeightFog.Runtime;
+--assembly-defines=Boxophobic.Utils.Scripts;
 --assembly-defines=Crest;
 --assembly-defines=Crest.Examples;
 --assembly-defines=DOTween;
@@ -110,7 +113,6 @@ Library: /Users/hwangjaehyeon/Cthulhu/Temp/BurstOutput/tempburstlibs/arm64-v8a/l
 --assembly-defines=Meta.WitAi.Lib;
 --assembly-defines=Meta.WitAi.TTS;
 --assembly-defines=Meta.XR.BuildingBlocks;
---assembly-defines=MiniProfiler;
 --assembly-defines=Mono.Security;
 --assembly-defines=mscorlib;
 --assembly-defines=Oculus.AudioManager;

@@ -1,0 +1,240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NewShaderVariants
+  m_Shaders:
+  - first: {fileID: 66, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: _SUNDISK_HIGH_QUALITY
+        passType: 0
+      - keywords: _SUNDISK_SIMPLE
+        passType: 0
+  - first: {fileID: 9000, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9001, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9002, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9003, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9004, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9007, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9101, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9103, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 10723, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: _OUTPUT_DEPTH
+        passType: 0
+  - first: {fileID: 4800000, guid: 65df88701913c224d95fc554db28381a, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: e7857e9d0c934dc4f83f270f8447b006, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 13
+      - keywords: EVALUATE_SH_VERTEX _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+        passType: 13
+      - keywords: EVALUATE_SH_VERTEX _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _NORMALMAP
+        passType: 13
+      - keywords: EVALUATE_SH_VERTEX _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _NORMALMAP _OCCLUSIONMAP
+        passType: 13
+  - first: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
+    second:
+      variants:
+      - keywords: _SURFACE_TYPE_TRANSPARENT
+        passType: 0
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: e6e9a19c3678ded42a3bc431ebef7dbd, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 93446b5c5339d4f00b85c159e1159b7c, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 986f7c6732e8a6e4881407d7f15f25c3, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 13
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _APPLYNORMALMAPPING_ON
+          _CAUSTICS_ON _FOAM3DLIGHTING_ON _FOAM_ON _SUBSURFACESCATTERING_ON _TRANSPARENCY_ON
+        passType: 13
+      - keywords: _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _FOAM_ON _SUBSURFACESCATTERING_ON
+          _UNDERWATER_ON _VARYSMOOTHNESSOVERDISTANCE_ON
+        passType: 13
+      - keywords: _APPLYNORMALMAPPING_ON _CAUSTICS_ON _FOAM3DLIGHTING_ON _FOAM_ON
+          _SUBSURFACESCATTERING_ON _TRANSPARENCY_ON
+        passType: 13
+      - keywords: _FOAM_ON _SUBSURFACESCATTERING_ON _UNDERWATER_ON _VARYSMOOTHNESSOVERDISTANCE_ON
+        passType: 13
+  - first: {fileID: 4800000, guid: 49550f9d794ff844db62013fde467d42, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 5c7b540557038e64b88626fddf91e123, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: CREST_DYNAMIC_WAVE_SIM_ON_INTERNAL
+        passType: 0
+  - first: {fileID: 4800000, guid: 2edf25ce84c11d049871c9c0dff30c2d, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: eb3085107770689438d3a97cf6959965, type: 3}
+    second:
+      variants:
+      - keywords: CREST_MENISCUS _SUBSURFACESCATTERING_ON
+        passType: 0
+  - first: {fileID: 4800000, guid: 8a3e8e1270d3f40688b73ded8c1e3087, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: -6465566751694194690, guid: a593087705ff05f458d095b8c7f24752, type: 3}
+    second:
+      variants:
+      - keywords: INSTANCING_ON _ALPHATEST_ON
+        passType: 8
+      - keywords: EVALUATE_SH_VERTEX _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _ALPHATEST_ON
+        passType: 13
+      - keywords: _ALPHATEST_ON
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 064005e06e75e524da6aecaf3c57c187, type: 3}
+    second:
+      variants:
+      - keywords: INSTANCING_ON _ALPHATEST_ON
+        passType: 8
+      - keywords: EVALUATE_SH_VERTEX _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _ALPHATEST_ON _SURFACE_TYPE_TRANSPARENT
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 3771e9da0c69c0e489a6820598580328, type: 3}
+    second:
+      variants:
+      - keywords: INSTANCING_ON _ALPHATEST_ON
+        passType: 8
+      - keywords: EVALUATE_SH_VERTEX _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS
+          _ALPHATEST_ON _SURFACE_TYPE_TRANSPARENT
+        passType: 13
+  - first: {fileID: 4800000, guid: af3f75217b9093d4ca08b592894901eb, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: cc4347574b823934ba11785e25895920, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 2e71dde583254f24f9acf239c9d5d8dd, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 69494530c2d06154dba377bc2a61be81, type: 3}
+    second:
+      variants:
+      - keywords: DIRECTIONAL
+        passType: 4
+      - keywords: POINT
+        passType: 5
+      - keywords: 
+        passType: 13
+  - first: {fileID: 4800000, guid: a3a3bc8785681554d9558e2ea68f100e, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: d2c008f025f10e84e840af15703382d8, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: daa7a6f4d9a66f343aace3d290e8844e, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: AHF_CAMERAMODE_PERSPECTIVE
+        passType: 13
+  - first: {fileID: 4800000, guid: 3a7ef1b66bafb7a448a880ef76d2e6e6, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: AHF_CAMERAMODE_PERSPECTIVE
+        passType: 13

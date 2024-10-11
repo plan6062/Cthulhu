@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main 1.unity
     guid: 4c18aede8a207504db05de71eb8de780
+  - enabled: 0
+    path: Assets/BOXOPHOBIC/Atmospheric Height Fog/Demo/Demo.unity
+    guid: f80728662e0cdea4a847e4f4f3da57a0
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4e025928099d83947ab599b0de3e6d35, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 73f37fd95ad7961459b85b6d1e7d61a5, type: 2}

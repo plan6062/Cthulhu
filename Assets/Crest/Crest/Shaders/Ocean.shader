@@ -213,7 +213,12 @@ Shader "Crest/Ocean URP"
 
 			// Culling user defined - can be inverted for under water
 			Cull[_CullMode]
-
+			Stencil
+			{
+				Ref 222
+				Comp Always
+				Pass Replace
+			}
 			HLSLPROGRAM
 			// Required to compile gles 2.0 with standard SRP library
 			// All shaders must be compiled with HLSLcc and currently only gles is not using HLSLcc by default
@@ -270,6 +275,7 @@ Shader "Crest/Ocean URP"
 
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+			#include "Assets/BOXOPHOBIC/Atmospheric Height Fog/Core/Includes/AtmosphericHeightFog.cginc"
 
 			// @Hack: Work around to unity_CameraToWorld._13_23_33 not being set correctly in URP 7.4+
 			float3 _CameraForward;
@@ -723,6 +729,8 @@ Shader "Crest/Ocean URP"
 				{
 					// Above water - do atmospheric fog. If you are using a third party sky package such as Azure, replace this with their stuff!
 					col = MixFog(col, input.positionWS_fogFactor.w);
+					float4 fogParams = GetAtmosphericHeightFog(input.positionWS_fogFactor.xyz);
+     				col.rgb = ApplyAtmosphericHeightFog(col.rgb, fogParams);
 				}
 #if CREST_UNDERWATER_BEFORE_TRANSPARENT
 				else

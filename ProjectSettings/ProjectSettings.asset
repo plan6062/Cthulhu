@@ -740,7 +740,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: CREST_OCEAN;DOTWEEN;CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    Android: CREST_OCEAN;DOTWEEN;CROSS_PLATFORM_INPUT;MOBILE_INPUT;ATMOSPHERIC_HEIGHT_FOG
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN

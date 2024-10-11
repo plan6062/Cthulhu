@@ -39,13 +39,12 @@ public class StageSpawner_1 : MessageBroker
             case Stage.GameStart:
                 break;
             case Stage.Opening_Start:
-                // Summon(reef);
-                
-                // 생성은 여기서 처리하지만, 파괴는 각 인스턴스가 스스로를 파괴한다. 
-                // 보트는 유일하게 처음부터 있어도 되지 않나?
-                // 
                 break;
             case Stage.Opening_Corpse1:
+            // 그냥 스테이지 시작 전부터 상자, 시체를 비롯해서 다양한 잔해 등 많은 부유물들이 떠 있는 상태.
+            // 부유물과 보트가 부딪히는 순간 물리 작용 구현 필요
+            // 좌초된 배 근처에 상자 위치      
+            // 상자 건드리고 나면 배는 가라앉기  
                 // Summon(transmitter);
                 Summon(picture1);
                 Summon(corpse_dead);
@@ -55,9 +54,11 @@ public class StageSpawner_1 : MessageBroker
                 Summon(corpse_drown);
                 break;
             case Stage.Opening_FindBattery:
+            // 상자 안에 배터리 포함(부모자식 관계), 상자가 플레이어에게 닿으면 해제
                 Summon(battery);
                 break;
             case Stage.Stage1_ConnectSatellite:
+            // 무전기 작동 방식 변경. 무전기가 가리키는 방향에 따라 GUI 변경.(거리 상관없이)
                 Summon(zone1);
                 break;
             case Stage.Stage1_EnterZone1:
@@ -70,6 +71,10 @@ public class StageSpawner_1 : MessageBroker
             case Stage.Stage1_SharkDissapear:
                 break;
             case Stage.Stage1_BahamutAppear:
+            // 바하무트가 보트를 쳐서 가라앉힐 때 배 뒤집히는 물리 작용 필요.
+            // 빠지는 순간 사운드 효과 & 비눗방울 파티클
+            
+            // 바하무트가 플레이어 
                 Summon(reef);
                 Summon(bahamut);                
                 break;
